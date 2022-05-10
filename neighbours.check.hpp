@@ -17,7 +17,7 @@ bool operator()(Ustate const& u1, UState const& u2) const {
       double base2 = (u2.x*u2.x) + (u2.y*u2.y);
       return std::abs(std::pow(base1, 0.5) - std::pow(base2, 0.5)) < d;
 }
-}
+};
 
 
 
