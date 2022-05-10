@@ -15,7 +15,7 @@ Check(double const d) : d_(d){}
 bool operator()(Ustate const& u1, UState const& u2) const {
     double base1 = (u1.x*u1.x) + (u1.y*u1.y);
       double base2 = (u2.x*u2.x) + (u2.y*u2.y);
-      return std::abs(std::pow(base1, 0.5) - std::pow(base2, 0.5)) < d;
+      return std::abs(std::pow(base1, 0.5) - std::pow(base2, 0.5)) < d_;
 }
 };
 
