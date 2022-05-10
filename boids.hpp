@@ -1,19 +1,22 @@
-struct UState { // stato dei singoli uccelli. Posizione e velocità in x,y
-  double x{};
-  double y{};
-  double vx{};
-  double vy{};
-  bool operator==(UState other) {  // serve per i test
-    return x == other.x && y == other.y && vx == other.vx && vy == other.vy;
-  }
-};
+#ifndef BOIDS_HPP
+#define BOIDS_HPP
+#include "UState.hpp"
+#include "neighbours.check.hpp"
+#include "flight.rules.hpp"
 
-// seguono le 3 interazioni
+#include <vector>
 
-class Sep {};
+class Boids {
 
-class All {};
+std::vector<UState> b_state;
 
-class Coe {};
+Sep b_sep;
 
-class Boids {}; // classe per applicare le regole di interazione a tutto lo stormo
+All b_all;
+
+Coe b_coe;
+
+
+}; // classe per applicare le regole di interazione a tutto lo stormo
+
+#endif 
