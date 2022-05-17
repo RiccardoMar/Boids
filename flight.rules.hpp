@@ -3,7 +3,7 @@
 
 //Separazione
 class Sep {
-  
+
 };
 //Allineamento
 class All {

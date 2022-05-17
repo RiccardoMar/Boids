@@ -1,3 +1,6 @@
 *.md
 a.out
 .vscode
+# cmake build directories
+build*
+.clangformat
