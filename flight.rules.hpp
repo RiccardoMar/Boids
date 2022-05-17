@@ -16,8 +16,8 @@ void v_1(){
      
      if(coppie(u1, u2) < d_s){
         for(int i; i != coppie.size(); ++i){
-         v1= -s * (u1.x - u2.x)//inserire le coppie di uccelli, in base alle indicazioni del neighbours.check
-        };
+         double v1 = -s * (u1.x - u2.x);//inserire le coppie di uccelli, in base alle indicazioni del neighbours.check
+        }
      } 
 }
 
