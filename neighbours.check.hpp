@@ -18,7 +18,7 @@ class Check {
   // d è la distanza minima da prendere fra 2 uccelli per considerarli vicini
 
  public:
-  Check(double const d) : d_(d) {}
+  Check(double const d) : d_{d} {}
   Check()
   bool empty() { return uccelli_.empty(); }
 
