@@ -15,7 +15,8 @@ double operator()(UState const& u1, UState const& u2) {
      if( std::abs(u1.P.x-u2.P.x) < ds){
        return -S * (u2.P.x - u1.P.x);
       } 
-}
+};
+};
 
 
 };
