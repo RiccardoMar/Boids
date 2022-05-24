@@ -6,12 +6,12 @@
 struct Position {
   double x{};
   double y{};
-}
+};U
 
 struct Velocity {
   double vx{};
   double vy{};
-}
+};
 
 struct UState { // stato dei singoli uccelli. Posizione e velocità in x,y
   Position P{};
