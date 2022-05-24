@@ -3,11 +3,19 @@
 
 #include <iosfwd> //riguarda l'operatore << 
 
-struct UState { // stato dei singoli uccelli. Posizione e velocità in x,y
+struct Position {
   double x{};
   double y{};
+}
+
+struct Velocity {
   double vx{};
   double vy{};
+}
+
+struct UState { // stato dei singoli uccelli. Posizione e velocità in x,y
+  Position P{};
+  Velocity V{};
   bool operator==(UState const other) const; //per i test
 };
 
