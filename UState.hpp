@@ -6,7 +6,7 @@
 struct Position {
   double x{};
   double y{};
-};U
+};
 
 struct Velocity {
   double vx{};
