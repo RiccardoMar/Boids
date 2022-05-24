@@ -5,20 +5,16 @@
 
 //Separazione
 class Sep {
-double s;
-Check coppie;
+double S;
+double const ds = 3;
 
 public:
-void v_1(){
-     double d_s = coppie.d * s;
-     UState u1; 
-     UState u2;
-     
-     if(coppie(u1, u2) < d_s){
-        for(int i; i != coppie.size(); ++i){
-         double v1 = -s * (u1.x - u2.x);//inserire le coppie di uccelli, in base alle indicazioni del neighbours.check
-        }
-     } 
+Sep(double s, double d_s) : S{s}, ds{d_s} {};
+
+double operator()(UState const& u1, UState const& u2) {
+     if( std::abs(u1.P.x-u2.P.x) < ds){
+       return -S * (u2.P.x - u1.P.x);
+      } 
 }
 
 
