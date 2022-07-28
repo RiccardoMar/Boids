@@ -6,18 +6,18 @@
 struct Position {
   double x{};
   double y{};
-  Position operator+=(Position const& other);
-  Position operator-(Position const& P1, Position const& P2);
-  Position operator/(Position const& P, double const& den);
+  Position operator+=(Position const& P2);
+  Position operator-(Position const& P2);
+  Position operator/(double const& den);
   Position move(Velocity const& V, double const& dt);
 };
 
 struct Velocity {
   double vx{};
   double vy{};
-  Velocity operator+=(Velocity const& other);
-  Velocity operator-(Velocity const& V1, Velocity const& V2);
-  Velocity operator/(Velocity const& V, double const& den);
+  Velocity operator+=(Velocity const& V2);
+  Velocity operator-(Velocity const& V2);
+  Velocity operator/(double const& den);
 };
 
 struct UState { // stato dei singoli uccelli. Numero progressivo, posizione e velocità in x,y
