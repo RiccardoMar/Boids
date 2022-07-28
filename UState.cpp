@@ -4,32 +4,32 @@
 #include <cmath>
 
 //Segue implementazione metodi Position
-  Position Position::operator+=(Position const& other){
-    x += other.x;
-    y += other.y;
+  Position Position::operator+=(Position const& P2){
+    x += P2;
+    y += P2;
     return *this;
   }
-  Position Position::operator-(Position const& P1, Position const& P2){
-    return Position{P1.x-P2.x, P1.y-P2.y};
+  Position Position::operator-(Position const& P2){
+    return Position{x-P2.x, y-P2.y};
   }
-  Position Position::operator/(Position const& P, double const& den){
-    return Position{P.x/den, P.y/den};
+  Position Position::operator/(Pdouble const& den){
+    return Position{x/den, y/den};
   }
   Position Position::move(Velocity const& V, double const& dt){
     x += V.vx*dt;
     y += V.vy*dt;
   }
 //Segue implementazione metodi Velocity
-  Velocity Velocity::operator+=(Velocity const& other){
-    vx += other.vx;
-    vy += other.vy;
+  Velocity Velocity::operator+=(Velocity const& V2){
+    vx += V2.vx;
+    vy += V2.vy;
     return *this;
   }
-  Velocity Velocity::operator-(Velocity const& V1, Velocity const& V2){
-    return Velocity{V1.vx-V2.vx, V1.vy-V2.vy};
+  Velocity Velocity::operator-(Velocity const& V2){
+    return Velocity{vx-V2.vx, vy-V2.vy};
   }
-  Velocity Velocity::operator/(Velocity const& V, double const& den){
-    return Velocity{V.vx/den, V.vy/den};
+  Velocity Velocity::operator/(double const& den){
+    return Velocity{vx/den, vy/den};
   }
 //Segue implementazione metodi UState
   bool UState::operator==(UState const& other) const {}
