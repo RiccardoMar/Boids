@@ -20,7 +20,7 @@ struct UState { // stato dei singoli uccelli. Posizione e velocità in x,y
   double dist(UState const& other) const;
 };
 
-double dist(UState const& u1, UState const& u2)
+double dist(UState const& u1, UState const& u2);
 
 std::ostream& operator<<(std::ostream& os, UState const& u);
 
