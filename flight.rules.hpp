@@ -18,8 +18,6 @@ double operator()(UState const& u1, UState const& u2) {
 };
 };
 
-
-};
 //Allineamento
 class All {
 
