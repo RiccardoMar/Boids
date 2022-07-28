@@ -20,7 +20,8 @@ struct Velocity {
   Velocity operator/(Velocity const& V, double const& den);
 };
 
-struct UState { // stato dei singoli uccelli. Posizione e velocità in x,y
+struct UState { // stato dei singoli uccelli. Numero progressivo, posizione e velocità in x,y
+  int UPN{};
   Position P{};
   Velocity V{};
   bool operator==(UState const& other) const; //per i test
