@@ -5,10 +5,6 @@
 
 // Separazione
 class Sep {
-<<<<<<< HEAD
-  double S;
-  double const ds = 3;
-=======
 double S;
 double const ds = 3;
 
@@ -21,7 +17,6 @@ double operator()(UState const& u1, UState const& u2) {
       } 
 };
 };
->>>>>>> d5db4e006f63b65cefc30cc6b8e650bb30e4bc50
 
  public:
   Sep(double s, double d_s) : S{s}, ds{d_s} {};
