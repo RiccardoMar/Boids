@@ -41,7 +41,9 @@ Hooke(double k, double l) : m_k(k), m_l(l) {
 
 TEST_CASE("Testing All") {}
 TEST_CASE("Testing Coe") {
-  SUBCASE("Testing ")
+  SUBCASE("Testing ") {
+
+  }
 }
 TEST_CASE("Testing Boids with 2 elements") {}
 TEST_CASE("Testing Boids with ... elements") {}
