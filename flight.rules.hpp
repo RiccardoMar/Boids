@@ -3,7 +3,7 @@
 #include "UState.hpp"
 #include "neighbours.check.hpp"
 
-//Separazione
+// Separazione
 class Sep {
 double S;
 double const ds = 3;
@@ -18,13 +18,29 @@ double operator()(UState const& u1, UState const& u2) {
 };
 };
 
-//Allineamento
-class All {
-
-};
-//Coesione
+// Allineamento
+class All {};
+// Coesione
 class Coe {
+  double C;
 
+ public:
+  Position cdm(std::vector<UState> const& Vicini) {
+    double x_cdm = 0.0;
+    double y_cdm = 0.0;
+    for (int i = 0; i != Vicini.size(); ++i) {
+      x_cdm = x_cdm + Vicini[i].P.x;
+    };
+    x_cdm = x_cdm / (Vicini.size() - 1);
+    for (int i = 0; i != Vicini.size(); ++i) {
+      y_cdm = y_cdm + Vicini[i].P.y;
+    };
+    y_cdm = y_cdm / (Vicini.size() - 1);
+    Position a{x_cdm, y_cdm};
+    return a;
+  }
+
+  double operator()(UState const& u, std::vector<UState> const& Vicini) {}
 };
 
 #endif
