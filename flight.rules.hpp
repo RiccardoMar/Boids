@@ -12,7 +12,7 @@ public:
 Sep(double s) : S{s} {};
 std::vector<Velocity> operator()(std::vector<Coppia> const& Vicini) const {
   for (int i = 0; i != Vicini.size(); ++i) {
-    if(dist(Vicini[i].u1, Vicini[i].u2 < ds)){
+    if(dist(Vicini[i].u1, Vicini[i].u2) < ds){
       Velocities[Vicini.u1.UPN] += uccelli[Vicini.u2.UPN].P - uccelli[Vicini.u1.UPN].P;
       Velocities[Vicini.u2.UPN] += uccelli[Vicini.u1.UPN].P - uccelli[Vicini.u2.UPN].P;
     }
