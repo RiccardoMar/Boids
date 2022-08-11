@@ -2,6 +2,7 @@
 
 #include <cassert>
 #include <iostream>
+#include <random>
 #include <stdexcept>
 
 // inserire le varie funzioni implementate insieme agli output
@@ -13,15 +14,28 @@ int main() {
   std::cin >> n;
   std::vector<UState> uccelli(n);
 
+  // Creazione n uccelli a random e inserimento con for loop dentro std::vector
+  // uccelli
 
-  //Creazione n uccelli a random e inserimento con for loop dentro std::vector uccelli
-// 
-// 
-// 
-// 
-// 
-// 
-  //Input parametri funzionamento
+  std::default_random_engine gen;
+  for (int i = 0; i != n; ++i) /*si potrebbe anche fare con range loop*/{
+    std::uniform_int_distribution<double> random_position(
+        /*estremi della randomness*/);
+    std::uniform_int_distribution<double> random_velocity(
+        /*estremi della randomness*/);
+
+    uccelli[i].P.x =
+        random_position(gen);  // l'errore va via dopo aver messo gli estremi
+    uccelli[i].P.y =
+        random_position(gen);  // l'errore va via dopo aver messo gli estremi
+    uccelli[i].V.vx =
+        random_velocity(gen);  // l'errore va via dopo aver messo gli estremi
+    uccelli[i].V.vy =
+        random_velocity(gen);  // l'errore va via dopo aver messo gli estremi
+    uccelli[i].UPN = i;
+  };
+
+  // Input parametri funzionamento
 
   double s;
   std::cin >> s;
@@ -35,11 +49,9 @@ int main() {
   std::cin >> c;
   Coe coesione{c};
 
-
-
   // Start interazione boids
 
-  Boids boids{uccelli, separazione, allineamento, coesione};
+  Boids boids{uccelli, separazione, allineamento, coesione}; //bisogna fargli il costruttore
 
   // valori in output
   std::cout
