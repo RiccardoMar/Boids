@@ -17,6 +17,8 @@ All b_all;
 Coe b_coe;
 
 
+//costruttore da preparare
+
 }; // classe per applicare le regole di interazione a tutto lo stormo
 
 #endif 
