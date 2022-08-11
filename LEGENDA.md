@@ -5,7 +5,12 @@ UState.hpp:
 -   dichiarazione free function dist e ostream per UState
 
 
-UState.cpp
+UState.cpp:
+-   Definizioni metodi e operatori di Position, di Velocity e di UState;
+-   Definizione free function dist e ostream per UState
+
+
+
 
 
 
