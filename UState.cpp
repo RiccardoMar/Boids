@@ -5,14 +5,14 @@
 
 //Segue implementazione metodi Position
   Position Position::operator+=(Position const& P2){
-    x += P2;
-    y += P2;
+    x += P2.x;
+    y += P2.y;
     return *this;
   }
   Position Position::operator-(Position const& P2){
     return Position{x-P2.x, y-P2.y};
   }
-  Position Position::operator/(Pdouble const& den){
+  Position Position::operator/(double const& den){
     return Position{x/den, y/den};
   }
   Position Position::move(Velocity const& V, double const& dt){
