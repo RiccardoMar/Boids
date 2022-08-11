@@ -5,11 +5,11 @@
 
 // Separazione
 class Sep {
-double S;
+double S = 0.;
 double const ds = 3;
 
 public:
-Sep(double s, double d_s) : S{s}, ds{d_s} {};
+Sep(double s) : S{s} {};
 std::vector<Velocity> operator()(std::vector<Coppia> const& Vicini) const {
   for (int i = 0; i != Vicini.size(); ++i) {
     if(dist(Vicini[i].u1, Vicini[i].u2 < ds)){
