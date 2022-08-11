@@ -6,7 +6,7 @@
 // Separazione
 class Sep {
 double S = 0.;
-double const ds = 3;
+double const ds = 3; //ma questa è una variabile che va usata per tutte le regole o no?  
 
 public:
 Sep(double s) : S{s} {};
