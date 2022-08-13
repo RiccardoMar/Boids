@@ -11,6 +11,7 @@ double const ds = 3; //ma questa è una variabile che va usata per tutte le rego
 public:
 Sep(double s) : S{s} {};
 std::vector<Velocity> operator()(std::vector<Coppia> const& Vicini) const {
+  std::vector<Velocity> Velocities(uccelli.size());
   for (int i = 0; i != Vicini.size(); ++i) {
     if(dist(Vicini[i].u1, Vicini[i].u2) < ds){
       Velocities[Vicini.u1.UPN] += uccelli[Vicini.u2.UPN].P - uccelli[Vicini.u1.UPN].P;
