@@ -10,7 +10,6 @@ struct Coppia {
   UState u1;
   UState u2;
 //HA BISOGNO DI COSTRUTTORE????
-//U1 E U2 DEVONO ESSERE PASSATI BY REFERENCE??
 };
 
 std::vector<Coppia> Check(std::vector<UState> const& uccelli,
