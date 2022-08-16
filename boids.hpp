@@ -8,16 +8,22 @@
 
 class Boids {
 
-std::vector<UState> b_state;
+std::vector<UState> UState_;
 
-Sep b_sep;
+Sep sep_;
 
-All b_all;
+All all_;
 
-Coe b_coe;
+Coe coe_;
+
+public:
+
+Boids(std::vector<UState> UState, Sep sep, All all, Coe coe) : UState_{UState}, sep_{sep} , all_{all}, coe_{coe}{
+//assertions here?
+}
 
 
-//costruttore da preparare
+
 
 }; // classe per applicare le regole di interazione a tutto lo stormo
 
