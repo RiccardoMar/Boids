@@ -1,6 +1,6 @@
 #ifndef RULES_HPP
 #define RULES_HPP
-#include "UState.hpp"
+//#include "UState.hpp"
 #include "neighbours.check.hpp"
 
 // Separazione
