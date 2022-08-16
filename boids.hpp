@@ -28,6 +28,13 @@ class Boids {
     // assertions here?
   }
 
+  std::vector<UState> const& state() const
+  {
+    return UState_;
+  } 
+  
+  void evolve(double delta_t);
+
 };  // classe per applicare le regole di interazione a tutto lo stormo
 
 #endif
