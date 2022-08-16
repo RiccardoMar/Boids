@@ -1,15 +1,13 @@
 #include "boids.hpp"
 
-#include <cassert>
-#include <iostream>
-#include <random>
-#include <stdexcept>
-
 // inserire le varie funzioni implementate insieme agli output
 
 // valori in input
 int main() {
-  int n;  // qui c'era anche un char a, e nell'assert n!=a, però non penso serva
+  auto const display_width = sf::Video
+
+      int n;  // qui c'era anche un char a, e nell'assert n!=a, però non penso
+              // serva
   assert(n >= 2);
   std::cin >> n;
   std::vector<UState> uccelli(n);
@@ -18,9 +16,8 @@ int main() {
   // uccelli
 
   std::default_random_engine gen;
-  for (int i = 0; i != n; ++i) /*si potrebbe anche fare con range loop*/{
-    std::uniform_int_distribution<double> random_position(
-        /*estremi della randomness*/);
+  for (int i = 0; i != n; ++i) /*si potrebbe anche fare con range loop*/ {
+    std::uniform_int_distribution<double> random_position(0., 1.);
     std::uniform_int_distribution<double> random_velocity(
         /*estremi della randomness*/);
 
@@ -51,7 +48,8 @@ int main() {
 
   // Start interazione boids
 
-  Boids boids{uccelli, separazione, allineamento, coesione}; //bisogna fargli il costruttore
+  Boids boids{uccelli, separazione, allineamento,
+              coesione};  // bisogna fargli il costruttore
 
   // valori in output
   std::cout
