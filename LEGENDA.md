@@ -11,9 +11,28 @@ UState.cpp:
 
 
 neighbours.check.hpp:
--   struct Coppia: 2 variabili pubbliche: UState u1 e UState u2; Da passare by ref? Da farci il costruttore?
+-   struct Coppia: 2 variabili pubbliche: UState u1 e UState u2; Da passare by ref? 
 -   Definizione della funzione Check : prende un vettore di UState, detto uccelli, e un parametro distanza, e poi, con dei cicli for, da in output un vettore di Coppie, detto Vicini
 
 
+main.cpp:
+-   variabili per la metrica e per sfml
+-   input del numero di boids
+-   creazione vettore uccelli, che contiene quel numero di UState
+-   engine random che assegna posizione x e y e velocità vx e vy random
+-   for loop che assegna gli UPN agli uccelli (=identificativo)
+-   input dei parametri s, a, c
+-   creazione oggetto boids di tipo Boids
+<!-- evolve & state & solve -->
+<!-- output della media e della deviazione standard -->
+
+
 flight.rules.hpp:
--   
+<!-- da fare  -->
+
+
+boids.hpp:
+-   Dichiarazione classe Boids, che contiene 4 variabili private: vettore uccelli, oggetto sep, oggetto all, oggetto coe; in più, ha un costruttore
+
+
+boids.test.cpp:
