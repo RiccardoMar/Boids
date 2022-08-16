@@ -12,27 +12,25 @@ int main() {
   if (n <= 2) {
     throw std::runtime_error{"Has to be a positive integer > 2"};
   };
-  assert(n >= 2);
+
   std::vector<UState> uccelli(n);
 
   // Creazione n uccelli a random e inserimento con for loop dentro std::vector
   // uccelli
 
   std::default_random_engine gen;
-  for (int i = 0; i != n; ++i) /*si potrebbe anche fare con range loop*/ {
+  for (auto& u : uccelli) /*si potrebbe anche fare con range loop*/ {
     std::uniform_int_distribution<double> random_position(0., 1.);
-    std::uniform_int_distribution<double> random_velocity(
-        /*estremi della randomness*/);
+    std::uniform_int_distribution<double> random_velocity(0., 50.);
 
-    uccelli[i].P.x =
-        random_position(gen);  // l'errore va via dopo aver messo gli estremi
-    uccelli[i].P.y =
-        random_position(gen);  // l'errore va via dopo aver messo gli estremi
-    uccelli[i].V.vx =
-        random_velocity(gen);  // l'errore va via dopo aver messo gli estremi
-    uccelli[i].V.vy =
-        random_velocity(gen);  // l'errore va via dopo aver messo gli estremi
-    uccelli[i].UPN = i;
+    u.P.x = random_position(gen);
+    u.P.y = random_position(gen); //controllare che il numero random che viene assegnato qui non sia uguale a quello assegnato sopra
+    u.V.vx = random_velocity(gen);
+    u.V.vy = random_velocity(gen);
+
+    for (int i = 0; i != uccelli.size(); ++i) {
+      u.UPN = i;
+    };
   };
 
   // Input parametri funzionamento
