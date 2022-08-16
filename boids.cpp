@@ -19,12 +19,12 @@ int main() {
   // uccelli
 
   std::default_random_engine gen;
-  for (auto& u : uccelli) /*si potrebbe anche fare con range loop*/ {
-    std::uniform_int_distribution<double> random_position(0., 1.);
-    std::uniform_int_distribution<double> random_velocity(0., 50.);
+  for (auto& u : uccelli) {
+    std::uniform_real_distribution<double> random_position(0., 1.);
+    std::uniform_real_distribution<double> random_velocity(0., 50.);
 
     u.P.x = random_position(gen);
-    u.P.y = random_position(gen); //controllare che il numero random che viene assegnato qui non sia uguale a quello assegnato sopra
+    u.P.y = random_position(gen);
     u.V.vx = random_velocity(gen);
     u.V.vy = random_velocity(gen);
 
