@@ -8,9 +8,10 @@ int main() {
 
       int n;  // qui c'era anche un char a, e nell'assert n!=a, però non penso
               // serva
-  assert(n >= 2);
   std::cin >> n;
+  assert(n >= 2);
   std::vector<UState> uccelli(n);
+  
 
   // Creazione n uccelli a random e inserimento con for loop dentro std::vector
   // uccelli
