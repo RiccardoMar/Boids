@@ -7,8 +7,11 @@ int main() {
   auto const display_width = sf::VideoMode::getDesktopMode().width;
   auto const display_height = sf::VideoMode::getDesktopMode().height;
 
-  int n;  
+  int n;
   std::cin >> n;
+  if (n <= 2) {
+    throw std::runtime_error{"Has to be a positive integer > 2"};
+  };
   assert(n >= 2);
   std::vector<UState> uccelli(n);
 
