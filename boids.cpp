@@ -4,10 +4,11 @@
 
 // valori in input
 int main() {
-  auto const display_width = sf::Video
+  auto const display_width = sf::VideoMode::getDesktopMode().width;
+  auto const display_height = sf::VideoMode::getDesktopMode().height;
 
-      int n;  // qui c'era anche un char a, e nell'assert n!=a, però non penso
-              // serva
+  int n;  // qui c'era anche un char a, e nell'assert n!=a, però non penso
+          // serva
   assert(n >= 2);
   std::cin >> n;
   std::vector<UState> uccelli(n);
