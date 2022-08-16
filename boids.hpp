@@ -6,6 +6,9 @@
 #include <random>
 #include <stdexcept>
 #include <vector>
+#include <SFML/Graphics.hpp>
+#include <SFML/System/Time.hpp>
+
 
 #include "flight.rules.hpp"
 #include "neighbours.check.hpp"
