@@ -36,3 +36,4 @@ boids.hpp:
 
 
 boids.test.cpp:
+Sezionato in parti diverse, nelle quali si testano i vari componenti del progetto. Bisogna ancora mettere a posto gli assert e i throw che logicamente devono stare all'interno del codice
