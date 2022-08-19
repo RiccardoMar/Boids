@@ -72,3 +72,5 @@ class Coe {
 };
 
 #endif
+
+//bisogna stare molto attenti al calcolo delle medie: devono escludere il punto !
