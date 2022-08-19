@@ -25,7 +25,6 @@ class Boids {
  public:
   Boids(std::vector<UState> UState, Sep sep, All all, Coe coe)
       : UState_{UState}, sep_{sep}, all_{all}, coe_{coe} {
-    // assertions here?
   }
 
   std::vector<UState> const& state() const
