@@ -17,10 +17,8 @@ Position Position::operator/(double const& den) {
   return Position{x / den, y / den};
 }
 Position Position::move(Velocity const& V, double const& dt) {
-  x += V.vx * dt;
-  y += V.vy * dt;
+  return Position{x + V.vx * dt, y + V.vy * dt};
 }
-
 // Segue implementazione metodi Velocity
 Velocity Velocity::operator+=(Velocity const& V2) {
   vx += V2.vx;
@@ -34,7 +32,7 @@ Velocity Velocity::operator/(double const& den) {
   return Velocity{vx / den, vy / den};
 }
 // Segue implementazione metodi UState
-bool UState::operator==(UState const& other) const {}
+//bool UState::operator==(UState const& other) const {} ----- da implementare. Implementare tolleranza per piccoli scarti.
 double UState::dist(UState const& other) const {
   double d = sqrt((P.x - other.P.x) * (P.x - other.P.x) +
                   (P.y - other.P.y) * (P.y - other.P.y));
