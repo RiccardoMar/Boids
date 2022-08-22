@@ -3,7 +3,6 @@
 
 #include <iosfwd> //riguarda l'operatore << 
 
-
 struct Velocity {
   double vx{};
   double vy{};
@@ -21,6 +20,7 @@ struct Position {
   Position move(Velocity const& V, double const& dt);
 };
 
+Velocity convert(Position P); //serve per alcuni passaggi algebrici nelle flight rules
 
 struct UState { // stato dei singoli uccelli. Numero progressivo, posizione e velocità in x,y
   int UPN{};
