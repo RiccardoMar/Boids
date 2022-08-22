@@ -16,17 +16,19 @@ UState solve(UState const& u, double f, double delta_t)
 
 void Boids::evolve(double delta_t)
 {
-  Check(UState_,  distanza);
-  
+  auto Vicini = Check(UState_,  distance_);
+  auto v_1 = sep_(Vicini);
+  auto v_2 = all_(Vicini);
+  auto v_3 = coe_(Vicini);
 
-  auto pps_it      = .begin();
-  auto pps_it_next = std::next(pps_it);
-  auto pps_last    = std::prev(m_ppses.end());
+  auto u_it      = UState_.begin();
+  auto u_it_next = std::next(pps_it);
+  auto u_last    = std::prev(UState_.end());
 
   double f_prev{0.0};
 
-  for (; pps_it != pps_last; ++pps_it, ++pps_it_next) {
-    double f = m_inter(*pps_it, *pps_it_next);
+  for (; u_it != u_last; ++u_it, ++u_it_next) {
+    //double f = m_inter(*pps_it, *pps_it_next);
     *pps_it  = solve(*pps_it, f - f_prev, delta_t);
     f_prev   = f;
   }
