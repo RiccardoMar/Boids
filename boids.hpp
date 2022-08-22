@@ -21,12 +21,12 @@ class Boids {
 
   Coe coe_;
 
-  unsigned int const distance_;
+  unsigned int const distanza_;
 
  public:
   Boids(std::vector<UState> UState, Sep const& sep, All const& all,
-        Coe const& coe, unsigned int const& distance)
-      : UState_{UState}, sep_{sep}, all_{all}, coe_{coe}, distance_{distance} {}
+        Coe const& coe, unsigned int const& distanza)
+      : UState_{UState}, sep_{sep}, all_{all}, coe_{coe}, distanza_{distanza} {}
 
   std::vector<UState> const& state() const { return UState_; }
 
