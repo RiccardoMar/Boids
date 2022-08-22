@@ -56,7 +56,7 @@ int main() {
   // Start interazione boids
 
   Boids boids{uccelli, separazione, allineamento,
-              coesione, distanza};  // bisogna fargli il costruttore
+              coesione, distance};  // bisogna fargli il costruttore
 
   // valori in output
   std::cout
