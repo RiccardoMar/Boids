@@ -16,10 +16,10 @@ Position Position::operator-(Position const& P2) {
 Position Position::operator/(double const& den) {
   return Position{x / den, y / den};
 }
-/*Position Position::move(Velocity const& V, double const& dt) {
+Position Position::move(Velocity const& V, double const& dt) {
   x += V.vx * dt;
   y += V.vy * dt;
-}*/
+}
 
 // Segue implementazione metodi Velocity
 Velocity Velocity::operator+=(Velocity const& V2) {
