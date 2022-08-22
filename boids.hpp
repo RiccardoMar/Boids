@@ -22,9 +22,11 @@ class Boids {
 
   Coe coe_;
 
+  int distance_;
+
  public:
-  Boids(std::vector<UState> UState, Sep const& sep, All const& all, Coe const& coe) //non devo mettere const UState poiché, dopo evolve, devo prendere il nuovo vettore e fare l'assignment UState = nuovo_vettore?
-      : UState_{UState}, sep_{sep}, all_{all}, coe_{coe} {
+  Boids(std::vector<UState> UState, Sep const& sep, All const& all, Coe const& coe, int distance) //non devo mettere const UState poiché, dopo evolve, devo prendere il nuovo vettore e fare l'assignment UState = nuovo_vettore?
+      : UState_{UState}, sep_{sep}, all_{all}, coe_{coe}, distance_{distance} {
   }
 
   std::vector<UState> const& state() const
