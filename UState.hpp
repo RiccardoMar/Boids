@@ -18,7 +18,7 @@ struct Position {
   Position operator+=(Position const& P2);
   Position operator-(Position const& P2);
   Position operator/(double const& den);
-  Position move(Velocity const& V, double const& dt);
+//  Position move(Velocity const& V, double const& dt); lo metteremo dentro solve
 };
 
 
