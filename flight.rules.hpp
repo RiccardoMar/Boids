@@ -17,7 +17,7 @@ class Sep {
     }
     if (ds <0.) {
       throw std::runtime_error{"Invalid distance separator parameter"};
-      //qui in realtà vorrei anche poterlo confrontare con displaywidth :( come cabbo faccio)
+
     }
   };
 
