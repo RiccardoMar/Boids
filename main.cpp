@@ -13,12 +13,6 @@ int main() {
     throw std::runtime_error{"Has to be a positive integer > 2"};
   };
 
-  int distance;
-  std::cin >> distance;
-  if (distance > display_width) {
-    throw std::runtime_error{"Has to be < width"};
-  };
-
   std::vector<UState> uccelli(n);
 
   // Creazione n uccelli a random e inserimento con for loop dentro std::vector
@@ -44,6 +38,9 @@ int main() {
 
   double s;
   std::cin >> s;
+   if (s > 1) {
+    throw std::runtime_error{"Has to be < width"};
+  };
   Sep separazione{s};
 
   double a;
@@ -53,6 +50,12 @@ int main() {
   double c;
   std::cin >> c;
   Coe coesione{c};
+
+  unsigned int distance;
+  std::cin >> distance;
+  if (distance > display_width) {
+    throw std::runtime_error{"Has to be < width"};
+  };
 
   // Start interazione boids
 
