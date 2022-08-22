@@ -9,7 +9,6 @@
 struct Coppia {
   UState u1;
   UState u2;
-//HA BISOGNO DI COSTRUTTORE????
 };
 
 std::vector<Coppia> Check(std::vector<UState> const& uccelli,
