@@ -6,9 +6,7 @@
 
 // Segue implementazione metodi Position
 Position Position::operator+=(Position const& P2) {
-  x += P2.x;
-  y += P2.y;
-  return *this;
+  return Position{x + P2.x, y + P2.y};
 }
 Position Position::operator-(Position const& P2) {
   return Position{x - P2.x, y - P2.y};
@@ -21,9 +19,7 @@ Position Position::move(Velocity const& V, double const& dt) {
 }
 // Segue implementazione metodi Velocity
 Velocity Velocity::operator+=(Velocity const& V2) {
-  vx += V2.vx;
-  vy += V2.vy;
-  return *this;
+  return Velocity{vx + V2.vx, vy + V2.vy};
 }
 Velocity Velocity::operator-(Velocity const& V2) {
   return Velocity{vx - V2.vx, vy - V2.vy};
@@ -44,6 +40,9 @@ std::ostream& operator<<(std::ostream& os, UState const& u) {
   os << "Posizione: (" << u.P.x << ", " << u.P.y << ") \n Velocità: (" << u.V.vx
      << ", " << u.V.vy << ')';
   return os;
+}
+Velocity convert(Position P){
+    return Velocity{P.x, P.y}; //serve per alcuni passaggi algebrici nelle flight rules
 }
 
 double dist(UState const& u1, UState const& u2) { return u1.dist(u2); }
