@@ -3,6 +3,15 @@
 
 #include <iosfwd> //riguarda l'operatore << 
 
+
+struct Velocity {
+  double vx{};
+  double vy{};
+  Velocity operator+=(Velocity const& V2);
+  Velocity operator-(Velocity const& V2);
+  Velocity operator/(double const& den);
+};
+
 struct Position {
   double x{};
   double y{};
@@ -12,13 +21,6 @@ struct Position {
   Position move(Velocity const& V, double const& dt);
 };
 
-struct Velocity {
-  double vx{};
-  double vy{};
-  Velocity operator+=(Velocity const& V2);
-  Velocity operator-(Velocity const& V2);
-  Velocity operator/(double const& den);
-};
 
 struct UState { // stato dei singoli uccelli. Numero progressivo, posizione e velocità in x,y
   int UPN{};
