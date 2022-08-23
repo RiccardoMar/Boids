@@ -22,19 +22,19 @@ class Sep {
   };
 
   std::vector<Velocity> operator()(std::vector<Coppia> const& Vicini) {
-    std::vector<Velocity> Velocities(uccelli.size());
+    std::vector<Velocity> Velocities1(uccelli.size());
     for (unsigned int i = 0; i != Vicini.size(); ++i) {
       if (dist(Vicini[i].u1, Vicini[i].u2) < ds_) {
-        Velocities[Vicini[i].u1.UPN] +=
+        Velocities1[Vicini[i].u1.UPN] +=
             convert(uccelli[Vicini[i].u2.UPN].P - uccelli[Vicini[i].u1.UPN].P);
-        Velocities[Vicini[i].u2.UPN] +=
+        Velocities1[Vicini[i].u2.UPN] +=
             convert(uccelli[Vicini[i].u1.UPN].P - uccelli[Vicini[i].u2.UPN].P);
-      }
+      } else {}
     }
-    for (unsigned int i = 0; i != Velocities.size(); ++i) {
-      (Velocities[i] - convert(uccelli[i].P)) / (-1 / s_);
+    for (unsigned int i = 0; i != Velocities1.size(); ++i) {
+      (Velocities1[i] - convert(uccelli[i].P)) / (-1 / s_);
     }
-    return Velocities;
+    return Velocities1;
   }
 };
 
