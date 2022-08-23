@@ -29,7 +29,7 @@ class Sep {
             convert(uccelli[Vicini[i].u2.UPN].P - uccelli[Vicini[i].u1.UPN].P);
         Velocities1[Vicini[i].u2.UPN] +=
             convert(uccelli[Vicini[i].u1.UPN].P - uccelli[Vicini[i].u2.UPN].P);
-      } else {}
+      }
     }
     for (unsigned int i = 0; i != Velocities1.size(); ++i) {
       (Velocities1[i] - convert(uccelli[i].P)) / (-1 / s_);
