@@ -3,7 +3,6 @@
 #include <cmath>
 #include <iostream>
 
-
 // Segue implementazione metodi Position
 Position Position::operator+=(Position const& P2) {
   return Position{x + P2.x, y + P2.y};
@@ -28,7 +27,8 @@ Velocity Velocity::operator/(double const& den) {
   return Velocity{vx / den, vy / den};
 }
 // Segue implementazione metodi UState
-//bool UState::operator==(UState const& other) const {} ----- da implementare. Implementare tolleranza per piccoli scarti.
+// bool UState::operator==(UState const& other) const {} ----- da implementare.
+// Implementare tolleranza per piccoli scarti.
 double UState::dist(UState const& other) const {
   double d = sqrt((P.x - other.P.x) * (P.x - other.P.x) +
                   (P.y - other.P.y) * (P.y - other.P.y));
@@ -38,11 +38,12 @@ double UState::dist(UState const& other) const {
 // Segue implementazione funzioni libere
 std::ostream& operator<<(std::ostream& os, UState const& u) {
   os << "Posizione: (" << u.P.x << ", " << u.P.y << ") \n Velocità: (" << u.V.vx
-     << ", " << u.V.vy << ')';
+     << ", " << u.V.vy << "Numero progressivo: " << u.UPN << ')';
   return os;
 }
-Velocity convert(Position P){
-    return Velocity{P.x, P.y}; //serve per alcuni passaggi algebrici nelle flight rules
+Velocity convert(Position P) {
+  return Velocity{
+      P.x, P.y};  // serve per alcuni passaggi algebrici nelle flight rules
 }
 
 double dist(UState const& u1, UState const& u2) { return u1.dist(u2); }
