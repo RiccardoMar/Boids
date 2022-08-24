@@ -41,9 +41,10 @@ std::ostream& operator<<(std::ostream& os, UState const& u) {
      << ", " << u.V.vy << "Numero progressivo: " << u.UPN << ')';
   return os;
 }
-Velocity convert(Position P) {
+Velocity convertPtoV(Position P) {
   return Velocity{
       P.x, P.y};  // serve per alcuni passaggi algebrici nelle flight rules
 }
+Position convertVtoP(Velocity V) { return Position{V.vx, V.vy}; }
 
 double dist(UState const& u1, UState const& u2) { return u1.dist(u2); }

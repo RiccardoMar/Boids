@@ -9,31 +9,31 @@
 
 TEST_CASE("Testing Sep") {
   SUBCASE("Test S e ds") { CHECK_THROWS(Sep{-4, 3}); }
-  SUBCASE("Test"){CHECK_THROWS(Sep{3, -3});}
-  CHECK_THROWS(Sep{-4, 0});
-  CHECK_THROWS(Sep{0, -3});
-}
-Sep const sep{3.0, 3.0};
-SUBCASE("Test funzionamento Sep") {
-  UState u1;
-  u1.P.x = 5.;
-  u1.P.y = 5.;
-  u1.V.vx = 10.;
-  u1.V.vy = 10.;
-  u1.UPN = 1;
-  UState u2;
-  u2.P.x = 5.;
-  u2.P.y = 5.;
-  u2.V.vx = 10.;
-  u2.V.vy = 10.;
-  u2.UPN = 2;
+  SUBCASE("Test") { CHECK_THROWS(Sep{3, -3}); }
+  SUBCASE("Test2") { CHECK_THROWS(Sep{-4, 0}); }
+  SUBCASE("Test3") { CHECK_THROWS(Sep{0, -3}); }
 
-  std::vector<UState> uccelli{u1, u2};
-  std::cout << "Primo uccello:" << uccelli[0];
-  std::cout << "Secondo uccello:" << uccelli[1];
+  Sep const sep{3.0, 3.0};
+  SUBCASE("Test funzionamento Sep") {
+    UState u1;
+    u1.P.x = 5.;
+    u1.P.y = 5.;
+    u1.V.vx = 10.;
+    u1.V.vy = 10.;
+    u1.UPN = 1;
+    UState u2;
+    u2.P.x = 5.;
+    u2.P.y = 5.;
+    u2.V.vx = 10.;
+    u2.V.vy = 10.;
+    u2.UPN = 2;
 
-  // CHECK(sep(u1, u2) == doctest::Approx(8.485).epsilon(0.01));
-}
+    std::vector<UState> uccelli{u1, u2};
+    std::cout << "Primo uccello:" << uccelli[0];
+    std::cout << "Secondo uccello:" << uccelli[1];
+
+    // CHECK(sep(u1, u2) == doctest::Approx(8.485).epsilon(0.01));
+  }
 }
 
 TEST_CASE("Testing All") {}

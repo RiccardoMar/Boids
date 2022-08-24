@@ -27,9 +27,9 @@ class Sep {
     for (unsigned int i = 0; i != Vicini.size(); ++i) {
       if (dist(Vicini[i].u1, Vicini[i].u2) < ds_) {
         Velocities1[Vicini[i].u1.UPN] +=
-            convert(uccelli[Vicini[i].u2.UPN].P - uccelli[Vicini[i].u1.UPN].P);
+            convertPtoV(uccelli[Vicini[i].u2.UPN].P - uccelli[Vicini[i].u1.UPN].P);
         Velocities1[Vicini[i].u2.UPN] +=
-            convert(uccelli[Vicini[i].u1.UPN].P - uccelli[Vicini[i].u2.UPN].P);
+            convertPtoV(uccelli[Vicini[i].u1.UPN].P - uccelli[Vicini[i].u2.UPN].P);
       }
     }  //-> così velocities è un vettore con le velocità v1, però che non sono
        // ancora state moltiplicate per il fattore s
@@ -86,15 +86,15 @@ class Coe {
     std::vector<Velocity> Velocities3(uccelli.size());
     std::vector<short int> Counters(uccelli.size());
     for (unsigned int i = 0; i != Vicini.size(); ++i) {
-      Velocities3[Vicini[i].u1.UPN] += convert(uccelli[Vicini[i].u2.UPN].P);
-      Velocities3[Vicini[i].u2.UPN] += convert(uccelli[Vicini[i].u1.UPN].P);
+      Velocities3[Vicini[i].u1.UPN] += convertPtoV(uccelli[Vicini[i].u2.UPN].P);
+      Velocities3[Vicini[i].u2.UPN] += convertPtoV(uccelli[Vicini[i].u1.UPN].P);
       Counters[Vicini[i].u1.UPN]++;
       Counters[Vicini[i].u2.UPN]++;
     }
     for (unsigned int i = 0; i != Velocities3.size(); ++i) {
       Velocities3[i] =
           Velocities3[i] / Counters[i];  // trasforma la sommatoria in media
-      Velocities3[i] = (Velocities3[i] - convert(uccelli[i].P)) / (1 / C);
+      Velocities3[i] = (Velocities3[i] - convertPtoV(uccelli[i].P)) / (1 / C);
     }
     return Velocities3;
   };
