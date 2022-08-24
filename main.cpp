@@ -2,7 +2,16 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System/Time.hpp>
 
-// inserire le varie funzioni implementate insieme agli output
+auto evolve(Boids& boids, int steps_per_evolution, sf::Time delta_t)
+{
+  double const dt{delta_t.asSeconds()};
+
+  for (int i{0}; i != steps_per_evolution; ++i) {
+    boids.evolve(dt);
+  }
+
+  return boids.state();
+}
 
 // valori in input
 int main() {
