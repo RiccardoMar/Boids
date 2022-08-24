@@ -50,23 +50,23 @@ class All {
   std::vector<UState> uccelli;
   All(double a) : A{a} {};
   std::vector<Velocity> operator()(std::vector<Coppia> const& Vicini) {
-    std::vector<Velocity> Velocities(uccelli.size());
+    std::vector<Velocity> Velocities2(uccelli.size());
     std::vector<short int> Counters(uccelli.size());
     for (unsigned int i = 0; i != Vicini.size(); ++i) {
-      Velocities[Vicini[i].u1.UPN] +=
+      Velocities2[Vicini[i].u1.UPN] +=
           uccelli[Vicini[i].u2.UPN].V - uccelli[Vicini[i].u1.UPN].V;
-      Velocities[Vicini[i].u2.UPN] +=
+      Velocities2[Vicini[i].u2.UPN] +=
           uccelli[Vicini[i].u1.UPN].V - uccelli[Vicini[i].u2.UPN].V;
       Counters[Vicini[i].u1.UPN]++;
       Counters[Vicini[i].u2.UPN]++;
     }
-    for (unsigned int i = 0; i != Velocities.size(); ++i) {
-      Velocities[i] / Counters[i];  // trasforma la sommatoria in media
-      Velocities[i] /
+    for (unsigned int i = 0; i != Velocities2.size(); ++i) {
+      Velocities2[i] / Counters[i];  // trasforma la sommatoria in media
+      Velocities2[i] /
           (1 / A);  // Nella struct Velocity ho implementato solo la divisione,
                     // quindi per moltiplicare divido per il reciproco.
     }
-    return Velocities;
+    return Velocities2;
   };
 };
 
