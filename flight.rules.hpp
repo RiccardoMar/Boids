@@ -27,7 +27,7 @@ class Sep {
     }
   };
 
-  std::vector<Velocity> operator()(std::vector<Coppia> const& Vicini) const {
+  std::vector<Velocity> operator()(std::vector<Coppia> const& Vicini)  {
     std::vector<Velocity> Velocities(uccelli.size());
     for (unsigned int i = 0; i != Vicini.size(); ++i) {
       if (dist(Vicini[i].u1, Vicini[i].u2) < ds_) {
@@ -49,7 +49,7 @@ class All {
  public:
  std::vector<UState> uccelli;
   All(double a) : A{a} {};
-  std::vector<Velocity> operator()(std::vector<Coppia> const& Vicini) const {
+  std::vector<Velocity> operator()(std::vector<Coppia> const& Vicini)  {
     std::vector<Velocity> Velocities(uccelli.size());
     std::vector<short int> Counters(uccelli.size());
     for (unsigned int i = 0; i != Vicini.size(); ++i) {
