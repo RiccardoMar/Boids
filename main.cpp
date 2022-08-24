@@ -40,7 +40,7 @@ int main() {
     u.V.vx = random_velocity(gen);
     u.V.vy = random_velocity(gen);
 
-    for (int i = 0; i != uccelli.size(); ++i) {
+    for (unsigned int i = 0; i != uccelli.size(); ++i) {
       u.UPN = i;
     };
   };
