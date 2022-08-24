@@ -23,7 +23,7 @@ class Boids {
 
  public:
   Boids(std::vector<UState>& UState, Sep const& sep, All const& all,
-        Coe const& coe, unsigned int const& distanza)
+        Coe const& coe, unsigned int const distanza)
       : UState_{UState}, sep_{sep}, all_{all}, coe_{coe}, distanza_{distanza} {}
 
   std::vector<UState> const& state() const { return UState_; }
