@@ -32,7 +32,7 @@ class Sep {
             convert(uccelli[Vicini[i].u1.UPN].P - uccelli[Vicini[i].u2.UPN].P);
       }
     }  //-> così velocities è un vettore con le velocità v1, però che non sono
-       //ancora state moltiplicate per il fattore s
+       // ancora state moltiplicate per il fattore s
 
     for (unsigned int i = 0; i != Velocities1.size(); ++i) {
       Velocities1[i] = Velocities1[i] / (-1 / s_);
@@ -40,7 +40,8 @@ class Sep {
     // se v1 di un oggetto è = 0, allora non verrà toccata
     return Velocities1;
   }
-}; //applicando auto v1 = sep(vettore vicini che viene da check), avremo in mano un vettore di velocità (x e y) 
+};  // applicando auto v1 = sep(vettore vicini che viene da check), avremo in
+    // mano un vettore di velocità (x e y)
 
 // Allineamento
 class All {
@@ -61,10 +62,11 @@ class All {
       Counters[Vicini[i].u2.UPN]++;
     }
     for (unsigned int i = 0; i != Velocities2.size(); ++i) {
-      Velocities2[i] / Counters[i];  // trasforma la sommatoria in media
-      Velocities2[i] /
-          (1 / A);  // Nella struct Velocity ho implementato solo la divisione,
-                    // quindi per moltiplicare divido per il reciproco.
+      if (Counters[i] != 0.) {
+        Velocities2[i] / Counters[i];  // trasforma la sommatoria in media; è
+                                       // già n-1 perché parte da 0
+        Velocities2[i] / (1 / A);
+      };
     }
     return Velocities2;
   };
