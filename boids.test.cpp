@@ -36,9 +36,9 @@ TEST_CASE("Testing Sep") {
   }
 }
 
-TEST_CASE("Testing All") {}
-TEST_CASE("Testing Coe") {
-  SUBCASE("Testing ") {}
-}
-TEST_CASE("Testing Boids with 2 elements") {}
-TEST_CASE("Testing Boids with ... elements") {}
+// TEST_CASE("Testing All") {}
+// TEST_CASE("Testing Coe") {
+//   SUBCASE("Testing ") {}
+// }
+// TEST_CASE("Testing Boids with 2 elements") {}
+// TEST_CASE("Testing Boids with ... elements") {}
