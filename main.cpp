@@ -1,4 +1,6 @@
 #include "boids.hpp"
+#include <SFML/Graphics.hpp>
+#include <SFML/System/Time.hpp>
 
 // inserire le varie funzioni implementate insieme agli output
 
