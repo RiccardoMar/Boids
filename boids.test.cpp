@@ -12,9 +12,10 @@ TEST_CASE("Testing Sep") {
   SUBCASE("Test") { CHECK_THROWS(Sep{3, -3}); }
   SUBCASE("Test2") { CHECK_THROWS(Sep{-4, 0}); }
   SUBCASE("Test3") { CHECK_THROWS(Sep{0, -3}); }
-
-  Sep const sep{3.0, 3.0};
+}
+TEST_CASE("Testing ") {
   SUBCASE("Test funzionamento Sep") {
+    Sep const sep{1.0, 3.0};
     UState u1;
     u1.P.x = 5.;
     u1.P.y = 5.;
