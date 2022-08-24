@@ -1,8 +1,7 @@
 #ifndef BOIDS_HPP
 #define BOIDS_HPP
 //#include "UState.hpp" : forse si può togliere perché c'è in neighbours
-#include <SFML/Graphics.hpp>
-#include <SFML/System/Time.hpp>
+
 #include <cassert>
 #include <iostream>
 #include <random>
