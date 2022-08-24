@@ -12,7 +12,7 @@ class Sep {
 
  public:
   std::vector<UState> uccelli;
-  Sep(double s, double ds) : s_{s}, ds_{ds} {
+  Sep(double s, double ds = 0.) : s_{s}, ds_{ds} {
     if (s <= 0. || s > 1.) {
       throw std::runtime_error{"Invalid separation parameter"};
     }
@@ -26,10 +26,10 @@ class Sep {
 
     for (unsigned int i = 0; i != Vicini.size(); ++i) {
       if (dist(Vicini[i].u1, Vicini[i].u2) < ds_) {
-        Velocities1[Vicini[i].u1.UPN] +=
-            convertPtoV(uccelli[Vicini[i].u2.UPN].P - uccelli[Vicini[i].u1.UPN].P);
-        Velocities1[Vicini[i].u2.UPN] +=
-            convertPtoV(uccelli[Vicini[i].u1.UPN].P - uccelli[Vicini[i].u2.UPN].P);
+        Velocities1[Vicini[i].u1.UPN] += convertPtoV(
+            uccelli[Vicini[i].u2.UPN].P - uccelli[Vicini[i].u1.UPN].P);
+        Velocities1[Vicini[i].u2.UPN] += convertPtoV(
+            uccelli[Vicini[i].u1.UPN].P - uccelli[Vicini[i].u2.UPN].P);
       }
     }  //-> così velocities è un vettore con le velocità v1, però che non sono
        // ancora state moltiplicate per il fattore s
