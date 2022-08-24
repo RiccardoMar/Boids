@@ -20,7 +20,8 @@ struct Position {
   Position move(Velocity const& V, double const& dt);
 };
 
-Velocity convert(Position P); //serve per alcuni passaggi algebrici nelle flight rules
+Velocity convertPtoV(Position P); //serve per alcuni passaggi algebrici nelle flight rules
+Position convertVtoP(Velocity V);
 
 struct UState { // stato dei singoli uccelli. Numero progressivo, posizione e velocità in x,y
   int UPN{};
