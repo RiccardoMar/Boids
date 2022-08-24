@@ -30,11 +30,6 @@ class Boids {
 
   void evolve(double delta_t);
 
-  std::vector<UState> const& state() const
-  {
-    return UState_;
-  }
-
 };  // classe per applicare le regole di interazione a tutto lo stormo
 
 #endif
