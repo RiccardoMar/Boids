@@ -11,7 +11,7 @@ struct Coppia {
   UState u2;
 };
 
-std::vector<Coppia> Check(std::vector<UState> const& uccelli,
+std::vector<Coppia> Check(std::vector<UState>& uccelli,
                           double const distanza) {
   std::vector<Coppia> Vicini;
   for (unsigned int i = 0; i != uccelli.size() - 1; ++i) {
