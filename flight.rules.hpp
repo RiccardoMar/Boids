@@ -11,7 +11,7 @@ class Sep {
 
  public:
   std::vector<UState> uccelli;
-  Sep(double s, double ds = 0.) : s_{s}, ds_{ds} {
+  Sep(double s, double ds = 1.) : s_{s}, ds_{ds} {
     if (s <= 0. || s > 1.) {
       throw std::runtime_error{"Invalid separation parameter"};
     }
