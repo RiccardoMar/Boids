@@ -2,7 +2,6 @@
 #define FLIGHT_RULES_HPP
 #include <stdexcept>
 
-#include "UState.hpp"
 #include "neighbours.check.hpp"
 
 // Separazione
