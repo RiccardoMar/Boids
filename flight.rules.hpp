@@ -50,6 +50,7 @@ class All {
  public:
   std::vector<UState> uccelli;
   All(double a) : A{a} {};
+
   std::vector<Velocity> operator()(std::vector<Coppia> const& Vicini) {
     std::vector<Velocity> Velocities2(uccelli.size());
     std::vector<short int> Counters(uccelli.size());
@@ -63,9 +64,10 @@ class All {
     }
     for (unsigned int i = 0; i != Velocities2.size(); ++i) {
       if (Counters[i] != 0.) {
-        Velocities2[i] / Counters[i];  // trasforma la sommatoria in media; è
-                                       // già n-1 perché parte da 0
-        Velocities2[i] / (1 / A);
+        Velocities2[i] =
+            Velocities2[i] / Counters[i];  // trasforma la sommatoria in media;
+                                           // è già n-1 perché parte da 0
+        Velocities2[i] = Velocities2[i] / (1 / A);
       };
     }
     return Velocities2;
@@ -79,24 +81,23 @@ class Coe {
  public:
   std::vector<UState> uccelli;
   Coe(double c) : C{c} {};
+
   std::vector<Velocity> operator()(std::vector<Coppia> const& Vicini) const {
-    std::vector<Velocity> Velocities(uccelli.size());
+    std::vector<Velocity> Velocities3(uccelli.size());
     std::vector<short int> Counters(uccelli.size());
     for (unsigned int i = 0; i != Vicini.size(); ++i) {
-      Velocities[Vicini[i].u1.UPN] += convert(uccelli[Vicini[i].u2.UPN].P);
-      Velocities[Vicini[i].u2.UPN] += convert(uccelli[Vicini[i].u1.UPN].P);
+      Velocities3[Vicini[i].u1.UPN] += convert(uccelli[Vicini[i].u2.UPN].P);
+      Velocities3[Vicini[i].u2.UPN] += convert(uccelli[Vicini[i].u1.UPN].P);
       Counters[Vicini[i].u1.UPN]++;
       Counters[Vicini[i].u2.UPN]++;
     }
-    for (unsigned int i = 0; i != Velocities.size(); ++i) {
-      Velocities[i] / Counters[i];  // trasforma la sommatoria in media
-      (Velocities[i] - convert(uccelli[i].P)) / (1 / C);
+    for (unsigned int i = 0; i != Velocities3.size(); ++i) {
+      Velocities3[i] =
+          Velocities3[i] / Counters[i];  // trasforma la sommatoria in media
+      Velocities3[i] = (Velocities3[i] - convert(uccelli[i].P)) / (1 / C);
     }
-    return Velocities;
+    return Velocities3;
   };
 };
 
 #endif
-
-// bisogna stare molto attenti al calcolo delle medie: devono escludere il punto
-// !
