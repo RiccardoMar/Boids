@@ -10,7 +10,6 @@ class Sep {
   double ds_;
 
  public:
-  std::vector<UState> uccelli;
   Sep(double s, double ds = 1.) : s_{s}, ds_{ds} {
     if (s <= 0. || s > 1.) {
       throw std::runtime_error{"Invalid separation parameter"};
@@ -20,7 +19,7 @@ class Sep {
     }
   };
 
-  std::vector<Velocity> operator()(std::vector<Coppia> const& Vicini) {
+  std::vector<Velocity> operator()(std::vector<Coppia> const& Vicini,  std::vector<UState> uccelli) {
     std::cout << "started operator"<< '\n';
     std::vector<Velocity> Velocities1(uccelli.size());
     std::cout << "velocities creato"<< '\n';
@@ -48,10 +47,9 @@ class All {
   double A;
 
  public:
-  std::vector<UState> uccelli;
   All(double a) : A{a} {};
 
-  std::vector<Velocity> operator()(std::vector<Coppia> const& Vicini) {
+  std::vector<Velocity> operator()(std::vector<Coppia> const& Vicini,  std::vector<UState> uccelli) {
     std::vector<Velocity> Velocities2(uccelli.size());
     std::vector<short int> Counters(uccelli.size());
     for (unsigned int i = 0; i != Vicini.size(); ++i) {
@@ -79,10 +77,9 @@ class Coe {
   double C;
 
  public:
-  std::vector<UState> uccelli;
   Coe(double c) : C{c} {};
 
-  std::vector<Velocity> operator()(std::vector<Coppia> const& Vicini) const {
+  std::vector<Velocity> operator()(std::vector<Coppia> const& Vicini,  std::vector<UState> uccelli) const {
     std::vector<Velocity> Velocities3(uccelli.size());
     std::vector<short int> Counters(uccelli.size());
     for (unsigned int i = 0; i != Vicini.size(); ++i) {
