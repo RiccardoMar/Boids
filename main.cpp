@@ -85,15 +85,9 @@ int main() {
 
   // Start interazione boids
 
-  
-
   std::cout << "Fine input" << '\n';
   // Start interazione boids
-Boids boids(uccelli, separazione, allineamento, coesione, distance);
-
-auto Vicini = Check(uccelli, distance);
-auto vs = separazione(Vicini);
-std::cout << vs[1].vx << ',' << vs[1].vx << '\n';
+  Boids boids(uccelli, separazione, allineamento, coesione, distance);
 
   std::cout
       << "Distanza media tra i boids : ";  // inseriremo vettore di
@@ -109,4 +103,3 @@ std::cout << vs[1].vx << ',' << vs[1].vx << '\n';
   auto Vicini = Check(uccelli, distance);
   std::cout << Vicini[0].u1 << Vicini[0].u2;
 }
-
