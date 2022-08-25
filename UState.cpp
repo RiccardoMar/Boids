@@ -30,8 +30,8 @@ Velocity Velocity::operator/(double const& den) {
 // bool UState::operator==(UState const& other) const {} ----- da implementare.
 // Implementare tolleranza per piccoli scarti.
 double UState::dist(UState const& other) const {
-  double d = sqrt((P.x - other.P.x) * (P.x - other.P.x) +
-                  (P.y - other.P.y) * (P.y - other.P.y));
+  double d = std::sqrt((P.x - other.P.x) * (P.x - other.P.x) +
+                       (P.y - other.P.y) * (P.y - other.P.y));
   return d;
 }
 
