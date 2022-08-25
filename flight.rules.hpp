@@ -39,10 +39,16 @@ class Sep {
                   << uccelli[Vicini[i].u1.UPN].P.y << "  and  "
                   << uccelli[Vicini[i].u2.UPN].P.x << " , "
                   << uccelli[Vicini[i].u2.UPN].P.y << '\n';
+
         Velocities1[Vicini[i].u1.UPN] += convertPtoV(
             uccelli[Vicini[i].u2.UPN].P - uccelli[Vicini[i].u1.UPN].P);
         Velocities1[Vicini[i].u2.UPN] += convertPtoV(
             uccelli[Vicini[i].u1.UPN].P - uccelli[Vicini[i].u2.UPN].P);
+
+        std::cout << "vx : " << Velocities1[Vicini[i].u1.UPN].vx
+                  << "vy : " << Velocities1[Vicini[i].u1.UPN].vy << '\n';
+        std::cout << "vx : " << Velocities1[Vicini[i].u2.UPN].vx
+                  << "vy : " << Velocities1[Vicini[i].u2.UPN].vy << '\n';
       }
     }  //-> così velocities è un vettore con le velocità v1, però che non sono
        // ancora state moltiplicate per il fattore s

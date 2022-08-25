@@ -21,8 +21,6 @@ int main() {
   auto const display_width = sf::VideoMode::getDesktopMode().width;
   auto const display_height = sf::VideoMode::getDesktopMode().height;
 
-  std::cout << display_width << "  " << display_height;
-
   int n;
   std::cin >> n;
   if (n <= 2) {
@@ -100,7 +98,7 @@ int main() {
   auto Vicini = Check(boids.state(), distance);
   auto sv = separazione(Vicini, boids.state());
 
-//   for (auto const& u : sv) {
-//     std::cout << u.vx << "and" << u.vy << '\n';
-//   }
+  //   for (auto const& u : sv) {
+  //     std::cout << u.vx << "and" << u.vy << '\n';
+  //   }
 }
