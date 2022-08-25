@@ -37,18 +37,17 @@ int main() {
   // uccelli
 
   std::default_random_engine gen;
-  for (int i = 0; i != n; ++i) {
-    std::uniform_int_distribution<int> random_height(0, display_height);
-    std::uniform_int_distribution<int> random_width(0, display_width);
-    std::uniform_int_distribution<int> random_velocity(0, 50.);
-    UState u;
-    u.P.x = random_width(gen);
-    u.P.y = random_height(gen);
-    u.V.vx = random_velocity(gen);
-    u.V.vy = random_velocity(gen);
-    u.UPN = i;
-    uccelli[i] = u;
-    std::cout << u;
+  for (unsigned int i = 0; i != uccelli.size(); ++i) {
+    std::uniform_real_distribution<double> random_height(0., display_height);
+    std::uniform_real_distribution<double> random_width(0., display_width);
+    std::uniform_real_distribution<double> random_velocity(0., 50.);
+
+    uccelli[i].P.x = random_width(gen);
+    uccelli[i].P.y = random_height(gen);
+    uccelli[i].V.vx = random_velocity(gen);
+    uccelli[i].V.vy = random_velocity(gen);
+
+    uccelli[i].UPN = i;
   };
 
   // Input parametri funzionamento
@@ -100,7 +99,8 @@ std::cout << vs[1].vx << ',' << vs[1].vx << '\n';
       << "Distanza media tra i boids : ";  // inseriremo vettore di
                                            // UStates con le nuove velocità
 
-  
-  
+  for (auto const& u : boids.state()) {
+    std::cout << u << '\n';
+  }
 }
 
