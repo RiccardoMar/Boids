@@ -15,7 +15,7 @@ auto evolve(Boids& boids, int steps_per_evolution, sf::Time delta_t) {
 
 // valori in input
 int main() {
-   auto const delta_t{sf::milliseconds(1)};
+  auto const delta_t{sf::milliseconds(1)};
   int const fps = 30;
   int const steps_per_evolution{1000 / fps};
   auto const display_width = sf::VideoMode::getDesktopMode().width;
@@ -153,12 +153,13 @@ int main() {
 
     window.clear();
     window.draw(sprite1);
-    
+
     auto const state = evolve(boids, steps_per_evolution, delta_t);
 
     for (auto& u : state) {
       sprite.setPosition(u.P.x, u.P.y);
       window.draw(sprite);
+      std::cout << u.P.x << "  " << u.P.y << std::endl;
     }
 
     if (window1.isOpen() == false) {

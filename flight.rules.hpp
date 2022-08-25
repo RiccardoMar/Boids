@@ -7,22 +7,29 @@
 // Separazione
 class Sep {
   double s_;
-  double ds_;
+  double ds_ = 5.;
 
  public:
-  Sep(double s, double ds = 1.) : s_{s}, ds_{ds} {
+  Sep(double s) : s_{s} {
     if (s <= 0. || s > 1.) {
       throw std::runtime_error{"Invalid separation parameter"};
     }
-    if (ds <= 0.) {
-      throw std::runtime_error{"Invalid distance separator parameter"};
-    }
+    // if (ds <= 0.) {
+    //   throw std::runtime_error{"Invalid distance separator parameter"};
+    // }
   };
 
-  std::vector<Velocity> operator()(std::vector<Coppia> const& Vicini,  std::vector<UState> uccelli) {
-    //std::cout << "started operator"<< '\n';
+  std::vector<Velocity> operator()(std::vector<Coppia> const& Vicini,
+                                   std::vector<UState> uccelli) {
+    std::cout << "started operator" << '\n';
     std::vector<Velocity> Velocities1(uccelli.size());
-    //std::cout << "velocities creato"<< '\n';
+    std::cout << "Uccelli size" << uccelli.size();
+    std::cout << "Vicini size" << Vicini.size();
+    std::cout << "velocities creato" << '\n';
+
+    std::cout << "Distanza fra dei vicini:" << dist(Vicini[1].u1, Vicini[1].u2)
+              << '\n';
+
     for (unsigned int i = 0; i != Vicini.size(); ++i) {
       if (dist(Vicini[i].u1, Vicini[i].u2) < ds_) {
         Velocities1[Vicini[i].u1.UPN] += convertPtoV(
@@ -32,7 +39,7 @@ class Sep {
       }
     }  //-> così velocities è un vettore con le velocità v1, però che non sono
        // ancora state moltiplicate per il fattore s
-    //std::cout << "ho fatto la sommatoria"<< '\n';
+    // std::cout << "ho fatto la sommatoria"<< '\n';
     for (unsigned int i = 0; i != Velocities1.size(); ++i) {
       Velocities1[i] = Velocities1[i] / (-1 / s_);
     }
@@ -49,7 +56,8 @@ class All {
  public:
   All(double a) : A{a} {};
 
-  std::vector<Velocity> operator()(std::vector<Coppia> const& Vicini,  std::vector<UState> uccelli) {
+  std::vector<Velocity> operator()(std::vector<Coppia> const& Vicini,
+                                   std::vector<UState> uccelli) {
     std::vector<Velocity> Velocities2(uccelli.size());
     std::vector<short int> Counters(uccelli.size());
     for (unsigned int i = 0; i != Vicini.size(); ++i) {
@@ -79,7 +87,8 @@ class Coe {
  public:
   Coe(double c) : C{c} {};
 
-  std::vector<Velocity> operator()(std::vector<Coppia> const& Vicini,  std::vector<UState> uccelli) const {
+  std::vector<Velocity> operator()(std::vector<Coppia> const& Vicini,
+                                   std::vector<UState> uccelli) const {
     std::vector<Velocity> Velocities3(uccelli.size());
     std::vector<short int> Counters(uccelli.size());
     for (unsigned int i = 0; i != Vicini.size(); ++i) {
