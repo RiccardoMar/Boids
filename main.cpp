@@ -85,4 +85,10 @@ int main() {
   for (auto const& u : boids.state()) {
     std::cout << u << '\n';
   }
+
+  std::cout << "/////////////////////////////////////////////////////////////"
+            << '\n';
+
+  auto Vicini = Check(uccelli, distance);
+  std::cout << Vicini[0].u1 << Vicini[0].u2;
 }
