@@ -37,8 +37,10 @@ int main() {
   std::default_random_engine gen{r()};
 
   for (unsigned int i = 0; i != uccelli.size(); ++i) {
-    std::uniform_real_distribution<double> random_height(0., display_height - 200);
-    std::uniform_real_distribution<double> random_width(0., display_width - 200);
+    std::uniform_real_distribution<double> random_height(0.,
+                                                         display_height - 200);
+    std::uniform_real_distribution<double> random_width(0.,
+                                                        display_width - 200);
     std::uniform_real_distribution<double> random_velocity(0., 50.);
 
     uccelli[i].P.x = random_width(gen);
@@ -118,9 +120,7 @@ int main() {
   }
   sf::Sprite sprite1;
   sprite1.setTexture(texture1);
-  float Scale_x = 1.1 * display_width / 1280;
-  float Scale_y = 1.1 * display_height / 720;
-  sprite1.setScale(Scale_x, Scale_y);
+  sprite1.setScale(1.f, 1.f);
 
   sf::Font font;
   if (!font.loadFromFile("RachelBrown.ttf")) {
