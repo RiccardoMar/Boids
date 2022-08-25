@@ -16,12 +16,12 @@ auto evolve(Boids& boids, int steps_per_evolution, sf::Time delta_t) {
 // valori in input
 int main() {
   auto const delta_t{sf::milliseconds(1)};
-  int const fps = 30;
+  int const fps = 200;
   int const steps_per_evolution{1000 / fps};
   auto const display_width = sf::VideoMode::getDesktopMode().width;
   auto const display_height = sf::VideoMode::getDesktopMode().height;
 
-  std::cout << display_width << "  " << display_height;
+  std::cout << display_width << "  " << display_height << '\n';
 
   int n;
   std::cin >> n;
@@ -37,14 +37,16 @@ int main() {
   std::default_random_engine gen{r()};
 
   for (unsigned int i = 0; i != uccelli.size(); ++i) {
-    std::uniform_real_distribution<double> random_height(0.,
-                                                         display_height - 200);
-    std::uniform_real_distribution<double> random_width(0.,
-                                                        display_width - 200);
-    std::uniform_real_distribution<double> random_velocity(50., 200.);
+    // std::uniform_real_distribution<double> random_height(0.,
+    //                                                      display_height -
+    //                                                      200);
+    // std::uniform_real_distribution<double> random_width(0.,
+    //                                                     display_width - 200);
 
-    uccelli[i].P.x = random_width(gen);
-    uccelli[i].P.y = random_height(gen);
+    std::uniform_real_distribution<double> random_velocity(25., 50.);
+
+    uccelli[i].P.x = display_width / 2;
+    uccelli[i].P.y = display_height / 2;
     uccelli[i].V.vx = random_velocity(gen);
     uccelli[i].V.vy = random_velocity(gen);
 
