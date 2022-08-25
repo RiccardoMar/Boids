@@ -41,7 +41,7 @@ int main() {
                                                          display_height - 200);
     std::uniform_real_distribution<double> random_width(0.,
                                                         display_width - 200);
-    std::uniform_real_distribution<double> random_velocity(0., 50.);
+    std::uniform_real_distribution<double> random_velocity(50., 200.);
 
     uccelli[i].P.x = random_width(gen);
     uccelli[i].P.y = random_height(gen);
