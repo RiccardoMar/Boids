@@ -1,9 +1,9 @@
-#include "boids.hpp"
 #include <SFML/Graphics.hpp>
 #include <SFML/System/Time.hpp>
 
-auto evolve(Boids& boids, int steps_per_evolution, sf::Time delta_t)
-{
+#include "boids.hpp"
+
+auto evolve(Boids& boids, int steps_per_evolution, sf::Time delta_t) {
   double const dt{delta_t.asSeconds()};
 
   for (int i{0}; i != steps_per_evolution; ++i) {
@@ -15,39 +15,46 @@ auto evolve(Boids& boids, int steps_per_evolution, sf::Time delta_t)
 
 // valori in input
 int main() {
+  auto const delta_t{sf::milliseconds(1)};
+  int const fps = 30;
+  int const steps_per_evolution{1000 / fps};
+
   auto const display_width = sf::VideoMode::getDesktopMode().width;
   auto const display_height = sf::VideoMode::getDesktopMode().height;
-
   int n;
+  std::cout << "Metti n: " << '\n';
   std::cin >> n;
   if (n <= 2) {
     throw std::runtime_error{"Has to be a positive integer > 2"};
   };
 
-  std::vector<UState> uccelli(n);
+  std::cout << display_height << display_width << '\n';
+
+  std::vector<UState> uccelli;
+  uccelli.reserve(n);
 
   // Creazione n uccelli a random e inserimento con for loop dentro std::vector
   // uccelli
 
   std::default_random_engine gen;
-  for (auto& u : uccelli) {
-    std::uniform_real_distribution<double> random_height(0., display_height);
-    std::uniform_real_distribution<double> random_width(0., display_width);
-    std::uniform_real_distribution<double> random_velocity(0., 50.);
-
+  for (int i = 0; i != n; ++i) {
+    std::uniform_int_distribution<int> random_height(0, display_height);
+    std::uniform_int_distribution<int> random_width(0, display_width);
+    std::uniform_int_distribution<int> random_velocity(0, 50.);
+    UState u;
     u.P.x = random_width(gen);
     u.P.y = random_height(gen);
     u.V.vx = random_velocity(gen);
     u.V.vy = random_velocity(gen);
-
-    for (unsigned int i = 0; i != uccelli.size(); ++i) {
-      u.UPN = i;
-    };
+    u.UPN = i;
+    uccelli[i] = u;
+    std::cout << u;
   };
 
   // Input parametri funzionamento
 
   double s;
+  std::cout << "Metti s: " << '\n';
   std::cin >> s;
   if (s > 1 || s < 0) {
     throw std::runtime_error{"Has to be between 0 and 1"};
@@ -55,6 +62,7 @@ int main() {
   Sep separazione{s};
 
   double a;
+  std::cout << "Metti a: " << '\n';
   std::cin >> a;
   if (a > 1 || a < 0) {
     throw std::runtime_error{"Has to be between 0 and 1"};
@@ -62,6 +70,7 @@ int main() {
   All allineamento{a};
 
   double c;
+  std::cout << "Metti c: " << '\n';
   std::cin >> c;
   if (c > 1 || c < 0) {
     throw std::runtime_error{"Has to be between 0 and 1"};
@@ -69,6 +78,7 @@ int main() {
   Coe coesione{c};
 
   unsigned int distance;
+  std::cout << "Metti distanza: " << '\n';
   std::cin >> distance;
   if (distance > display_width) {
     throw std::runtime_error{"Has to be < width"};
@@ -76,11 +86,21 @@ int main() {
 
   // Start interazione boids
 
-  Boids boids{uccelli, separazione, allineamento, coesione,
-              distance};  // bisogna fargli il costruttore
+  
 
-  // valori in output
+  std::cout << "Fine input" << '\n';
+  // Start interazione boids
+Boids boids(uccelli, separazione, allineamento, coesione, distance);
+
+auto Vicini = Check(uccelli, distance);
+auto vs = separazione(Vicini);
+std::cout << vs[1].vx << ',' << vs[1].vx << '\n';
+
   std::cout
       << "Distanza media tra i boids : ";  // inseriremo vettore di
                                            // UStates con le nuove velocità
+
+  
+  
 }
+
