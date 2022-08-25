@@ -46,7 +46,8 @@ class Sep {
       }
     }  //-> così velocities è un vettore con le velocità v1, però che non sono
        // ancora state moltiplicate per il fattore s
-    // std::cout << "ho fatto la sommatoria"<< '\n';
+    std::cout << "ho fatto la sommatoria" << '\n';
+    std::cout << "Velocities1 size : " << Velocities1.size() << '\n';
     for (unsigned int i = 0; i != Velocities1.size(); ++i) {
       Velocities1[i] = Velocities1[i] / (-1 / s_);
     }
