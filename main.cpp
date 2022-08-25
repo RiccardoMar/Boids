@@ -96,5 +96,10 @@ int main() {
   };
 
   auto vs = separazione(Vicini);
-  std::cout << vs.size();
+  std::cout << "Ho fatto vs" << '\n';
+  std::cout << vs.size() << '\n';
+
+  auto va = allineamento(Vicini);
+  std::cout << "Ho fatto as" << '\n';
+ // std::cout << va.size() << '\n';
 }
