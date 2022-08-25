@@ -96,4 +96,11 @@ int main() {
 
   std::cout << "/////////////////////////////////////////////////////////////"
             << '\n';
+
+  auto Vicini = Check(boids.state(), distance);
+  auto sv = separazione(Vicini, boids.state());
+
+  for (auto const& u : sv) {
+    std::cout << u.vx << "and" << u.vy << '\n';
+  }
 }
