@@ -15,6 +15,9 @@ auto evolve(Boids& boids, int steps_per_evolution, sf::Time delta_t) {
 
 // valori in input
 int main() {
+   auto const delta_t{sf::milliseconds(1)};
+  int const fps = 30;
+  int const steps_per_evolution{1000 / fps};
   auto const display_width = sf::VideoMode::getDesktopMode().width;
   auto const display_height = sf::VideoMode::getDesktopMode().height;
 
@@ -131,7 +134,7 @@ int main() {
   text.setFillColor(sf::Color::Black);
   text.setPosition(1000, 100);
 
-  window.setFramerateLimit(60);
+  window.setFramerateLimit(fps);
   while (window.isOpen()) {
     sf::Event event;
 
@@ -150,10 +153,11 @@ int main() {
 
     window.clear();
     window.draw(sprite1);
-    // auto const state = evolve(boids, steps_per_evolution, delta_t);
+    
+    auto const state = evolve(boids, steps_per_evolution, delta_t);
 
-    for (unsigned int i = 0; i != uccelli.size(); ++i) {
-      sprite.setPosition(uccelli[i].P.x, uccelli[i].P.y);
+    for (auto& u : state) {
+      sprite.setPosition(u.P.x, u.P.y);
       window.draw(sprite);
     }
 
