@@ -16,7 +16,7 @@ inline std::vector<Coppia> Check(std::vector<UState> const& uccelli,
   std::vector<Coppia> Vicini;
   for (unsigned int i = 0; i != uccelli.size() - 1; ++i) {
     for (unsigned int j = i + 1; j != uccelli.size(); ++j) {
-      if (dist(uccelli[i], uccelli[j]) < distanza * distanza) {
+      if (dist(uccelli[i], uccelli[j]) < distanza) {
         Vicini.push_back(Coppia{uccelli[i], uccelli[j]});
       }
     }
