@@ -7,7 +7,7 @@
 // Separazione
 class Sep {
   double s_;
-  double ds_ = 5.;
+  double ds_ = 50.;
 
  public:
   Sep(double s) : s_{s} {
@@ -23,15 +23,17 @@ class Sep {
                                    std::vector<UState> uccelli) {
     std::cout << "started operator" << '\n';
     std::vector<Velocity> Velocities1(uccelli.size());
-    std::cout << "Uccelli size" << uccelli.size();
-    std::cout << "Vicini size" << Vicini.size();
+    std::cout << "Uccelli size" << uccelli.size() << '\n';
+    std::cout << "Vicini size" << Vicini.size() << '\n';
     std::cout << "velocities creato" << '\n';
 
     std::cout << "Distanza fra dei vicini:" << dist(Vicini[1].u1, Vicini[1].u2)
               << '\n';
 
     for (unsigned int i = 0; i != Vicini.size(); ++i) {
+      std::cout << "hey sto facendo il for" << '\n';
       if (dist(Vicini[i].u1, Vicini[i].u2) < ds_) {
+        std::cout << "hey sto facendo l'if" << '\n';
         Velocities1[Vicini[i].u1.UPN] += convertPtoV(
             uccelli[Vicini[i].u2.UPN].P - uccelli[Vicini[i].u1.UPN].P);
         Velocities1[Vicini[i].u2.UPN] += convertPtoV(
