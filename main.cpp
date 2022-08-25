@@ -90,5 +90,7 @@ int main() {
             << '\n';
 
   auto Vicini = Check(uccelli, distance);
-  std::cout << Vicini[2].u1 << Vicini[2].u2;
+  for (unsigned int i = 0; i != Vicini.size(); ++i) {
+    std::cout << Vicini[i].u1.UPN <<"    with    "<< Vicini[i].u2.UPN << '\n';
+  }
 }
