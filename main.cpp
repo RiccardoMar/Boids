@@ -1,9 +1,9 @@
-#include "boids.hpp"
 #include <SFML/Graphics.hpp>
 #include <SFML/System/Time.hpp>
 
-auto evolve(Boids& boids, int steps_per_evolution, sf::Time delta_t)
-{
+#include "boids.hpp"
+
+auto evolve(Boids& boids, int steps_per_evolution, sf::Time delta_t) {
   double const dt{delta_t.asSeconds()};
 
   for (int i{0}; i != steps_per_evolution; ++i) {
@@ -30,19 +30,17 @@ int main() {
   // uccelli
 
   std::default_random_engine gen;
-  for (auto& u : uccelli) {
+  for (unsigned int i = 0; i != uccelli.size(); ++i) {
     std::uniform_real_distribution<double> random_height(0., display_height);
     std::uniform_real_distribution<double> random_width(0., display_width);
     std::uniform_real_distribution<double> random_velocity(0., 50.);
 
-    u.P.x = random_width(gen);
-    u.P.y = random_height(gen);
-    u.V.vx = random_velocity(gen);
-    u.V.vy = random_velocity(gen);
+    uccelli[i].P.x = random_width(gen);
+    uccelli[i].P.y = random_height(gen);
+    uccelli[i].V.vx = random_velocity(gen);
+    uccelli[i].V.vy = random_velocity(gen);
 
-    for (unsigned int i = 0; i != uccelli.size(); ++i) {
-      u.UPN = i;
-    };
+    uccelli[i].UPN = i;
   };
 
   // Input parametri funzionamento
@@ -83,4 +81,8 @@ int main() {
   std::cout
       << "Distanza media tra i boids : ";  // inseriremo vettore di
                                            // UStates con le nuove velocità
+
+  for (auto const& u : boids.state()) {
+    std::cout << u << '\n';
+  }
 }
