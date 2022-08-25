@@ -55,23 +55,23 @@ int main() {
 
   double s;
   std::cin >> s;
-  if (s > 1 || s < 0) {
-    throw std::runtime_error{"Has to be between 0 and 1"};
-  };
+  // if (s > 1 || s < 0) {
+  //   throw std::runtime_error{"Has to be between 0 and 1"};
+  // };
   Sep separazione{s};
 
   double a;
   std::cin >> a;
-  if (a > 1 || a < 0) {
-    throw std::runtime_error{"Has to be between 0 and 1"};
-  };
+  // if (a > 1 || a < 0) {
+  //   throw std::runtime_error{"Has to be between 0 and 1"};
+  // };
   All allineamento{a};
 
   double c;
   std::cin >> c;
-  if (c > 1 || c < 0) {
-    throw std::runtime_error{"Has to be between 0 and 1"};
-  };
+  // if (c > 1 || c < 0) {
+  //   throw std::runtime_error{"Has to be between 0 and 1"};
+  // };
   Coe coesione{c};
 
   unsigned int distance;
