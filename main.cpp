@@ -28,8 +28,9 @@ int main() {
 
   // Creazione n uccelli a random e inserimento con for loop dentro std::vector
   // uccelli
+  std::random_device r;
+  std::default_random_engine gen{r()};
 
-  std::default_random_engine gen;
   for (unsigned int i = 0; i != uccelli.size(); ++i) {
     std::uniform_real_distribution<double> random_height(0., display_height);
     std::uniform_real_distribution<double> random_width(0., display_width);
@@ -99,6 +100,18 @@ sf::Vector2i v1(100, 200);
 if (!texture.loadFromFile("freccia.png")) {
   std::cout << "Could not load texture" << std::endl;
   return 0;
+  auto Vicini = Check(uccelli, distance);
+  for (unsigned int i = 0; i != Vicini.size(); ++i) {
+    std::cout << Vicini[i].u1.UPN << "    with    " << Vicini[i].u2.UPN << '\n';
+  };
+
+  auto vs = separazione(Vicini);
+  std::cout << "Ho fatto vs" << '\n';
+  std::cout << vs.size() << '\n';
+
+  auto va = allineamento(Vicini);
+  std::cout << "Ho fatto as" << '\n';
+ // std::cout << va.size() << '\n';
 }
 sf::Sprite sprite;
 sprite.setTexture(texture);

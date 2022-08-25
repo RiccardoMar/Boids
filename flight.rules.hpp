@@ -21,8 +21,9 @@ class Sep {
   };
 
   std::vector<Velocity> operator()(std::vector<Coppia> const& Vicini) {
+    std::cout << "started operator"<< '\n';
     std::vector<Velocity> Velocities1(uccelli.size());
-
+    std::cout << "velocities creato"<< '\n';
     for (unsigned int i = 0; i != Vicini.size(); ++i) {
       if (dist(Vicini[i].u1, Vicini[i].u2) < ds_) {
         Velocities1[Vicini[i].u1.UPN] += convertPtoV(
@@ -32,7 +33,7 @@ class Sep {
       }
     }  //-> così velocities è un vettore con le velocità v1, però che non sono
        // ancora state moltiplicate per il fattore s
-
+    std::cout << "ho fatto la sommatoria"<< '\n';
     for (unsigned int i = 0; i != Velocities1.size(); ++i) {
       Velocities1[i] = Velocities1[i] / (-1 / s_);
     }
