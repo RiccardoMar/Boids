@@ -37,8 +37,8 @@ double UState::dist(UState const& other) const {
 
 // Segue implementazione funzioni libere
 std::ostream& operator<<(std::ostream& os, UState const& u) {
-  os << "Posizione: (" << u.P.x << ", " << u.P.y << ") \n Velocità: (" << u.V.vx
-     << ", " << u.V.vy << "Numero progressivo: " << u.UPN << ')';
+  os << "Posizione: (" << u.P.x << ", " << u.P.y << ")  Velocità: (" << u.V.vx
+     << ", " << u.V.vy << "Numero progressivo: " << u.UPN << ')'<<'\n';
   return os;
 }
 Velocity convertPtoV(Position P) {
