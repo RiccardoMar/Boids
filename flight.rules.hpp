@@ -34,6 +34,11 @@ class Sep {
       std::cout << "hey sto facendo il for" << '\n';
       if (dist(Vicini[i].u1, Vicini[i].u2) < ds_) {
         std::cout << "hey sto facendo l'if" << '\n';
+        std::cout << "Posizione u1.x, u1.y, u2.x e u2.y : "
+                  << uccelli[Vicini[i].u1.UPN].P.x
+                  << uccelli[Vicini[i].u1.UPN].P.y << "  and  "
+                  << uccelli[Vicini[i].u2.UPN].P.x
+                  << uccelli[Vicini[i].u2.UPN].P.y << '\n';
         Velocities1[Vicini[i].u1.UPN] += convertPtoV(
             uccelli[Vicini[i].u2.UPN].P - uccelli[Vicini[i].u1.UPN].P);
         Velocities1[Vicini[i].u2.UPN] += convertPtoV(
