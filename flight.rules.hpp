@@ -46,6 +46,10 @@ class Sep {
       }
     }  //-> così velocities è un vettore con le velocità v1, però che non sono
        // ancora state moltiplicate per il fattore s
+    for (auto const& i : Velocities1) {
+      std::cout << "vx : " << i.vx << "vy : " << i.vy << '\n';
+    }
+
     std::cout << "ho fatto la sommatoria" << '\n';
     std::cout << "Velocities1 size : " << Velocities1.size() << '\n';
     for (unsigned int i = 0; i != Velocities1.size(); ++i) {
