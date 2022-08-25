@@ -32,8 +32,8 @@ int main() {
   std::default_random_engine gen{r()};
 
   for (unsigned int i = 0; i != uccelli.size(); ++i) {
-    std::uniform_real_distribution<double> random_height(0., display_height);
-    std::uniform_real_distribution<double> random_width(0., display_width);
+    std::uniform_real_distribution<double> random_height(0., display_height - 200);
+    std::uniform_real_distribution<double> random_width(0., display_width - 200);
     std::uniform_real_distribution<double> random_velocity(0., 50.);
 
     uccelli[i].P.x = random_width(gen);
