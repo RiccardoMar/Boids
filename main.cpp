@@ -15,16 +15,23 @@ auto evolve(Boids& boids, int steps_per_evolution, sf::Time delta_t) {
 
 // valori in input
 int main() {
+  auto const delta_t{sf::milliseconds(1)};
+  int const fps = 30;
+  int const steps_per_evolution{1000 / fps};
+
   auto const display_width = sf::VideoMode::getDesktopMode().width;
   auto const display_height = sf::VideoMode::getDesktopMode().height;
-
   int n;
+  std::cout << "Metti n: " << '\n';
   std::cin >> n;
   if (n <= 2) {
     throw std::runtime_error{"Has to be a positive integer > 2"};
   };
 
-  std::vector<UState> uccelli(n);
+  std::cout << display_height << display_width << '\n';
+
+  std::vector<UState> uccelli;
+  uccelli.reserve(n);
 
   // Creazione n uccelli a random e inserimento con for loop dentro std::vector
   // uccelli
@@ -46,6 +53,7 @@ int main() {
   // Input parametri funzionamento
 
   double s;
+  std::cout << "Metti s: " << '\n';
   std::cin >> s;
   if (s > 1 || s < 0) {
     throw std::runtime_error{"Has to be between 0 and 1"};
@@ -53,6 +61,7 @@ int main() {
   Sep separazione{s};
 
   double a;
+  std::cout << "Metti a: " << '\n';
   std::cin >> a;
   if (a > 1 || a < 0) {
     throw std::runtime_error{"Has to be between 0 and 1"};
@@ -60,6 +69,7 @@ int main() {
   All allineamento{a};
 
   double c;
+  std::cout << "Metti c: " << '\n';
   std::cin >> c;
   if (c > 1 || c < 0) {
     throw std::runtime_error{"Has to be between 0 and 1"};
@@ -67,6 +77,7 @@ int main() {
   Coe coesione{c};
 
   unsigned int distance;
+  std::cout << "Metti distanza: " << '\n';
   std::cin >> distance;
   if (distance > display_width) {
     throw std::runtime_error{"Has to be < width"};
@@ -74,10 +85,16 @@ int main() {
 
   // Start interazione boids
 
-  Boids boids{uccelli, separazione, allineamento, coesione,
-              distance};  // bisogna fargli il costruttore
+  
 
-  // valori in output
+  std::cout << "Fine input" << '\n';
+  // Start interazione boids
+Boids boids(uccelli, separazione, allineamento, coesione, distance);
+
+auto Vicini = Check(uccelli, distance);
+auto vs = separazione(Vicini);
+std::cout << vs[1].vx << ',' << vs[1].vx << '\n';
+
   std::cout
       << "Distanza media tra i boids : ";  // inseriremo vettore di
                                            // UStates con le nuove velocità
@@ -92,3 +109,4 @@ int main() {
   auto Vicini = Check(uccelli, distance);
   std::cout << Vicini[0].u1 << Vicini[0].u2;
 }
+
