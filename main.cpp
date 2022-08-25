@@ -101,5 +101,5 @@ int main() {
             << '\n';
 
   auto Vicini = Check(uccelli, distance);
-  std::cout << Vicini[0].u1 << Vicini[0].u2;
+  std::cout << Vicini[1].u1 << Vicini[1].u2;
 }
