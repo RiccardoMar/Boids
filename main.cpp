@@ -44,7 +44,7 @@ int main() {
     std::uniform_real_distribution<double> random_width(0.,
                                                         display_width - 200);
 
-    std::uniform_real_distribution<double> random_velocity(100., 400.);
+    std::uniform_real_distribution<double> random_velocity(0., 100.);
 
     uccelli[i].P.x = random_width(gen);
     uccelli[i].P.y = random_height(gen);
@@ -197,7 +197,7 @@ if(wait == true){ //codice quando il gioco è in pausa
     window.clear();
     window.draw(sprite1);
 
-    auto const state = evolve(boids, steps_per_evolution, delta_t);
+    auto const state = evolve(boids, 1000/30, delta_t);
     auto b = boids.state();
     std::cout << "////////////////////////////////////////////////////////////"
               << '\n';  

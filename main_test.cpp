@@ -60,25 +60,18 @@ int main() {
   double s;
   std::cout << "Inserire il parametro di separazione : ";
   std::cin >> s;
-  if (s > 1 || s < 0) {
-    throw std::runtime_error{"Has to be between 0 and 1"};
-  };
+
   Sep separazione{s};
 
   double a;
   std::cout << "Inserire il parametro di allineamento : ";
   std::cin >> a;
-  if (a > 1 || a < 0) {
-    throw std::runtime_error{"Has to be between 0 and 1"};
-  };
   All allineamento{a};
 
   double c;
   std::cout << "Inserire il parametro di coesione : ";
   std::cin >> c;
-  if (c > 1 || c < 0) {
-    throw std::runtime_error{"Has to be between 0 and 1"};
-  };
+
   Coe coesione{c};
 
   unsigned int distance;
@@ -107,82 +100,9 @@ int main() {
   std::cout << "/////////////////////////////////////////////////////////////"
             << '\n';
 
-  sf::RenderWindow window(sf::VideoMode(display_width, display_height),
-                          "SFML works!");
-
-  sf::RenderWindow window1(sf::VideoMode(700, 600), "Double window works!");
-
-  sf::Vector2i v1(100, 200);
-
-  sf::Texture texture;
-  if (!texture.loadFromFile("freccia.png")) {
-    std::cout << "Could not load texture" << std::endl;
-    return 0;
+  auto vicini = Check(boids.state(), distance);
+  auto va = allineamento(vicini, boids.state());
+  for (auto& i : va) {
+    std::cout << i.vx << "  ;  " << i.vy << '\n';
   }
-  sf::Sprite sprite;
-  sprite.setTexture(texture);
-  sprite.setScale(0.10f, 0.10f);
-
-  sf::Texture texture1;
-  if (!texture1.loadFromFile("windowsxp.jpg")) {
-    std::cout << "Could not load texture" << std::endl;
-    return 0;
-  }
-  sf::Sprite sprite1;
-  sprite1.setTexture(texture1);
-  sprite1.setScale(1.f, 1.f);
-
-  sf::Font font;
-  if (!font.loadFromFile("RachelBrown.ttf")) {
-    std::cout << "Could not load font" << std::endl;
-    return 0;
-  }
-  sf::Text text;
-  text.setFont(font);
-  text.setString("Click here to drop down menu");
-  text.setCharacterSize(50);
-  text.setFillColor(sf::Color::Black);
-  text.setPosition(1000, 100);
-
-  window.setFramerateLimit(fps);
-  while (window.isOpen()) {
-    sf::Event event;
-
-    while (window.pollEvent(event)) {
-      if (event.type == sf::Event::Closed) window.close();
-    }
-
-    while (window1.pollEvent(event)) {
-      if (event.type == sf::Event::Closed) window1.close();
-    }
-
-    if (window1.isOpen() == false &&
-        sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
-      window1.create(sf::VideoMode(700, 600), "Double window works!");
-    }
-
-    window.clear();
-    window.draw(sprite1);
-
-    auto const state = evolve(boids, steps_per_evolution, delta_t);
-    std::cout << "////////////////////////////////////////////////////////////"
-              << '\n';
-    for (auto& u : state) {
-      sprite.setPosition(u.P.x, u.P.y);
-      window.draw(sprite);
-      std::cout << u.P.x << "  " << u.P.y << std::endl;
-    }
-
-    if (window1.isOpen() == false) {
-      window.draw(text);
-    }
-
-    window.display();
-
-    window1.clear(sf::Color::White);
-    window1.draw(sprite);
-    window1.display();
-  }
-
-  return 0;
 }
