@@ -16,7 +16,7 @@ auto evolve(Boids& boids, int steps_per_evolution, sf::Time delta_t) {
 // valori in input
 int main() {
   auto const delta_t{sf::milliseconds(1)};
-  int const fps = 150;
+  int const fps = 30;
   int const steps_per_evolution{1000 / fps};
   auto const display_width = sf::VideoMode::getDesktopMode().width;
   auto const display_height = sf::VideoMode::getDesktopMode().height;
@@ -44,7 +44,7 @@ int main() {
     std::uniform_real_distribution<double> random_width(0.,
                                                         display_width - 200);
 
-    std::uniform_real_distribution<double> random_velocity(100, 400.);
+    std::uniform_real_distribution<double> random_velocity(100., 400.);
 
     uccelli[i].P.x = random_width(gen);
     uccelli[i].P.y = random_height(gen);
