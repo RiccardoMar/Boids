@@ -16,3 +16,18 @@ void Boids::evolve(double delta_t) {
   //   std::cout << Vicini[i].u1.UPN << "  with  " << Vicini[i].u2.UPN << '\n';
   // }
 }
+
+void Boids::bordi(Boids& boids, const unsigned int display_width, const unsigned int display_height){
+  auto u = boids.state();
+  for (unsigned int i = 0; i != u.size(); ++i){
+    if (u[i].P.x > display_width - 1000 || u[i].P.x < 0.) {
+        u[i].V.vx =  - u[i].V.vx;
+        
+      }
+      if (u[i].P.y > display_height - 1000 || u[i].P.y < 0.) {
+        u[i].V.vy = u[i].V.vy - u[i].V.vy;
+
+  }
+  
+}
+}

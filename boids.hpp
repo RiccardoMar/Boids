@@ -30,6 +30,8 @@ class Boids {
 
   void evolve(double delta_t);
 
+  void bordi(Boids& boids, const unsigned int display_width, const unsigned int display_height);
+
 };  // classe per applicare le regole di interazione a tutto lo stormo
 
 #endif

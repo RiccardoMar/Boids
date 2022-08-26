@@ -5,8 +5,10 @@
 
 auto evolve(Boids& boids, int steps_per_evolution, sf::Time delta_t) {
   double const dt{delta_t.asSeconds()};
-
+  auto const display_width = sf::VideoMode::getDesktopMode().width;
+  auto const display_height = sf::VideoMode::getDesktopMode().height;
   for (int i{0}; i != steps_per_evolution; ++i) {
+    boids.bordi(boids, display_width, display_height);
     boids.evolve(dt);
   }
 
@@ -203,19 +205,7 @@ if(wait == true){ //codice quando il gioco è in pausa
               << '\n';  
     for (unsigned int i = 0; i != uccelli.size(); ++i) {
       // auto arg = (180./3.1415926535) *
-      // std::atan(std::tan(b[i].V.vx/b[i].V.vy));
-      if (b[i].P.x > display_width - 1000 || b[i].P.x < 0.) {
-        b[i].V.vx = b[i].V.vx - b[i].V.vx;
-        sprite.setPosition(b[i].P.x, b[i].P.y);
-        window.draw(sprite);
-      }
-      if (b[i].P.y > display_height - 1000 || b[i].P.y < 0.) {
-        b[i].V.vy = b[i].V.vy - b[i].V.vy;
-
-        sprite.setPosition(b[i].P.x, b[i].P.y);
-        window.draw(sprite);
-      }
-      // sprite.setRotation(arg);
+      // std::atan(std::tan(b[i].V.vx/b[i].V.vy)); sprite.setRotation(arg);
       sprite.setPosition(b[i].P.x, b[i].P.y);
       window.draw(sprite);
 
