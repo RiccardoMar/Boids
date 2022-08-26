@@ -163,7 +163,7 @@ int main() {
     window.clear();
     window.draw(sprite1);
 
-    auto const state = evolve(boids, steps_per_evolution, delta_t);
+    auto const state = evolve(boids, 15, delta_t);
     auto b = boids.state();
     std::cout << "////////////////////////////////////////////////////////////"
               << '\n';  

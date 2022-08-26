@@ -10,11 +10,12 @@ class Sep {
   double ds_ = 100.;
 
  public:
-  Sep(double s) : s_{s} {
-    if (s <= 0. ) {
-      throw std::runtime_error{"Invalid separation parameter"};
-    }
-  };
+  Sep(double s)
+      : s_{s} {
+            // if (s <= 0. || s > 1.) {
+            //   throw std::runtime_error{"Invalid separation parameter"};
+            // }
+        };
 
   std::vector<Velocity> operator()(std::vector<Coppia> const& Vicini,
                                    std::vector<UState> uccelli) {
@@ -76,6 +77,11 @@ class All {
                                    std::vector<UState> uccelli) {
     std::vector<Velocity> Velocities2(uccelli.size());
     std::vector<short int> Counters(uccelli.size());
+    std::cout << "started operator" << '\n';
+    std::cout << "Uccelli size" << uccelli.size() << '\n';
+    std::cout << "Vicini size" << Vicini.size() << '\n';
+    std::cout << "velocities creato" << '\n';
+
     for (unsigned int i = 0; i != Vicini.size(); ++i) {
       Velocities2[Vicini[i].u1.UPN] +=
           uccelli[Vicini[i].u2.UPN].V - uccelli[Vicini[i].u1.UPN].V;
