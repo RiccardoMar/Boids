@@ -45,7 +45,7 @@ int main() {
     std::uniform_real_distribution<double> random_width(0.,
                                                         display_width - 200);
 
-    std::uniform_real_distribution<double> random_velocity(25., 50.);
+    std::uniform_real_distribution<double> random_velocity(5., 100.);
 
     uccelli[i].P.x = random_width(gen);
     uccelli[i].P.y = random_height(gen);
@@ -164,6 +164,7 @@ int main() {
 
     auto const state = evolve(boids, steps_per_evolution, delta_t);
     auto b = boids.state();
+    
     for (unsigned int i = 0; i != uccelli.size(); ++i) {
       //auto arg = (180./3.1415926535) * std::atan(std::tan(b[i].V.vx/b[i].V.vy)); 
       if(b[i].P.x > display_width -1000 || b[i].P.x < 0. ) {
@@ -171,8 +172,7 @@ int main() {
         sprite.setPosition(b[i].P.x, b[i].P.y);
         window.draw(sprite);
       }
-      if(b[i].P.y > display_height -1000 || b[i].P.y < 0. ){
-        b[i].V.vy = b[i].V.vy - b[i].V.vy ;
+     
         
         sprite.setPosition(b[i].P.x, b[i].P.y);
         window.draw(sprite);

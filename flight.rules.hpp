@@ -11,7 +11,7 @@ class Sep {
 
  public:
   Sep(double s) : s_{s} {
-    if (s <= 0. || s > 1.) {
+    if (s <= 0. ) {
       throw std::runtime_error{"Invalid separation parameter"};
     }
   };
