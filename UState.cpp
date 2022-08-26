@@ -4,9 +4,12 @@
 #include <iostream>
 
 // Segue implementazione metodi Position
-Position Position::operator+=(Position const& P2) {
-  return Position{x + P2.x, y + P2.y};
-}
+Position& Position::operator+=(Position const& P2) {
+  x += P2.x;
+  y += P2.y;
+  return *this;
+};
+
 Position Position::operator-(Position const& P2) {
   return Position{x - P2.x, y - P2.y};
 }
@@ -17,9 +20,11 @@ Position Position::move(Velocity const& V, double const& dt) {
   return Position{x + V.vx * dt, y + V.vy * dt};
 }
 // Segue implementazione metodi Velocity
-Velocity Velocity::operator+=(Velocity const& V2) {
-  return Velocity{vx + V2.vx, vy + V2.vy};
-}
+Velocity& Velocity::operator+=(Velocity const& V2) {
+  vx += V2.vx;
+  vy += V2.vy;
+  return *this;
+};
 Velocity Velocity::operator-(Velocity const& V2) {
   return Velocity{vx - V2.vx, vy - V2.vy};
 }
