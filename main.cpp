@@ -17,7 +17,7 @@ auto evolve(Boids& boids, int steps_per_evolution, sf::Time delta_t) {
 int main() {
   auto const delta_t{sf::milliseconds(1)};
   int const fps = 150;
-  int const steps_per_evolution{1000/fps};
+  int const steps_per_evolution{1000 / fps};
   auto const display_width = sf::VideoMode::getDesktopMode().width;
   auto const display_height = sf::VideoMode::getDesktopMode().height;
 
@@ -40,12 +40,11 @@ int main() {
 
   for (unsigned int i = 0; i != uccelli.size(); ++i) {
     std::uniform_real_distribution<double> random_height(0.,
-                                                         display_height -
-                                                         200);
+                                                         display_height - 200);
     std::uniform_real_distribution<double> random_width(0.,
                                                         display_width - 200);
 
-    std::uniform_real_distribution<double> random_velocity(5., 100.);
+    std::uniform_real_distribution<double> random_velocity(100, 400.);
 
     uccelli[i].P.x = random_width(gen);
     uccelli[i].P.y = random_height(gen);
@@ -82,7 +81,9 @@ int main() {
   Coe coesione{c};
 
   unsigned int distance;
-   std::cout << "Inserire la distanza di interazione fra boids (in pixel; ricordare che il parametro distanza della separazione è 10 pixel) : ";
+  std::cout
+      << "Inserire la distanza di interazione fra boids (in pixel; ricordare "
+         "che il parametro distanza della separazione è 10 pixel) : ";
   std::cin >> distance;
   if (distance > display_width) {
     throw std::runtime_error{"Has to be < width"};
@@ -164,31 +165,33 @@ int main() {
 
     auto const state = evolve(boids, steps_per_evolution, delta_t);
     auto b = boids.state();
-    
+    std::cout << "////////////////////////////////////////////////////////////"
+              << '\n';  
     for (unsigned int i = 0; i != uccelli.size(); ++i) {
-      //auto arg = (180./3.1415926535) * std::atan(std::tan(b[i].V.vx/b[i].V.vy)); 
-      if(b[i].P.x > display_width -1000 || b[i].P.x < 0. ) {
-        b[i].V.vx =  b[i].V.vx -b[i].V.vx ; 
+      // auto arg = (180./3.1415926535) *
+      // std::atan(std::tan(b[i].V.vx/b[i].V.vy));
+      if (b[i].P.x > display_width - 1000 || b[i].P.x < 0.) {
+        b[i].V.vx = b[i].V.vx - b[i].V.vx;
         sprite.setPosition(b[i].P.x, b[i].P.y);
         window.draw(sprite);
       }
-     
-        
+      if (b[i].P.y > display_height - 1000 || b[i].P.y < 0.) {
+        b[i].V.vy = b[i].V.vy - b[i].V.vy;
+
         sprite.setPosition(b[i].P.x, b[i].P.y);
         window.draw(sprite);
       }
-      //sprite.setRotation(arg);
+      // sprite.setRotation(arg);
       sprite.setPosition(b[i].P.x, b[i].P.y);
       window.draw(sprite);
+
       std::cout << b[i].P.x << "  " << b[i].P.y << b[i].UPN << std::endl;
     }
-    
-    
-    
+
     // for (auto& u : state) {
-    
-    // auto arg = (180./3.1415926535) * std::atan(std::tan(u.V.vx/u.V.vy));  
-      
+
+    // auto arg = (180./3.1415926535) * std::atan(std::tan(u.V.vx/u.V.vy));
+
     //   sprite.setPosition(u.P.x, u.P.y);
     //   sprite.setRotation(arg);
     //   window.draw(sprite);
@@ -208,26 +211,3 @@ int main() {
 
   return 0;
 }
-
-// std::vector<Velocity> Velocities1(uccelli.size());
-//   for (unsigned int i = 0; i != Vicini.size(); ++i) {
-//       if (dist(Vicini[i].u1, Vicini[i].u2) < 1.) {
-//         Velocities1[Vicini[i].u1.UPN] += convertPtoV(
-//             uccelli[Vicini[i].u2.UPN].P - uccelli[Vicini[i].u1.UPN].P);
-//         Velocities1[Vicini[i].u2.UPN] += convertPtoV(
-//             uccelli[Vicini[i].u1.UPN].P - uccelli[Vicini[i].u2.UPN].P);
-//       }
-//       }  //-> così velocities è un vettore con le velocità v1, però che non
-//       sono
-//        // ancora state moltiplicate per il fattore s
-
-//     for (unsigned int i = 0; i != Velocities1.size(); ++i) {
-//       Velocities1[i] = Velocities1[i] / (-1 / s);
-//     }
-//     auto vs = Velocities1;
-
-// for (unsigned int i = 0; i != Vicini.size(); ++i) {
-//       if (dist(Vicini[i].u1, Vicini[i].u2) < 5.) {
-//         std::cout<< "Distanza ok";
-//       }
-// }
