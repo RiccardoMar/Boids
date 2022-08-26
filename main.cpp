@@ -21,9 +21,11 @@ int main() {
   auto const display_width = sf::VideoMode::getDesktopMode().width;
   auto const display_height = sf::VideoMode::getDesktopMode().height;
 
-  std::cout << display_width << "  " << display_height << '\n';
+  std::cout << "Display width = " << display_width << " ; "
+            << "Display height : " << display_height << '\n';
 
   int n;
+  std::cout << "Inserire il numero desiderato di boids : ";
   std::cin >> n;
   if (n <= 2) {
     throw std::runtime_error{"Has to be a positive integer > 2"};
@@ -56,6 +58,7 @@ int main() {
   // Input parametri funzionamento
 
   double s;
+  std::cout << "Inserire il parametro di separazione : ";
   std::cin >> s;
   // if (s > 1 || s < 0) {
   //   throw std::runtime_error{"Has to be between 0 and 1"};
@@ -63,6 +66,7 @@ int main() {
   Sep separazione{s};
 
   double a;
+  std::cout << "Inserire il parametro di allineamento : ";
   std::cin >> a;
   // if (a > 1 || a < 0) {
   //   throw std::runtime_error{"Has to be between 0 and 1"};
@@ -70,6 +74,7 @@ int main() {
   All allineamento{a};
 
   double c;
+  std::cout << "Inserire il parametro di coesione : ";
   std::cin >> c;
   // if (c > 1 || c < 0) {
   //   throw std::runtime_error{"Has to be between 0 and 1"};
@@ -77,6 +82,7 @@ int main() {
   Coe coesione{c};
 
   unsigned int distance;
+   std::cout << "Inserire la distanza di interazione fra boids (in pixel; ricordare che il parametro distanza della separazione è 10 pixel) : ";
   std::cin >> distance;
   if (distance > display_width) {
     throw std::runtime_error{"Has to be < width"};
