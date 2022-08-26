@@ -11,4 +11,8 @@ void Boids::evolve(double delta_t) {
     UState_[i].V.vy += v_1[i].vy + v_2[i].vy + v_3[i].vy;
     UState_[i].P += convertVtoP(UState_[i].V) / (1.0 / delta_t);
   };
+
+  for(unsigned int i = 0; i != Vicini.size(); ++i){
+    std::cout << Vicini[i].u1.UPN << "  with  " << Vicini[i].u2.UPN << '\n';
+  }
 }
