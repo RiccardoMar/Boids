@@ -21,7 +21,8 @@ int main() {
   auto const display_width = sf::VideoMode::getDesktopMode().width;
   auto const display_height = sf::VideoMode::getDesktopMode().height;
 
-  std::cout << display_width << "  " << display_height << '\n';
+  std::cout << "Display width = " << display_width << " ; "
+            << "Display height : " << display_height << '\n';
 
   int n;
   std::cin >> n;
