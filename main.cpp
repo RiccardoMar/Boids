@@ -17,7 +17,7 @@ auto evolve(Boids& boids, int steps_per_evolution, sf::Time delta_t) {
 int main() {
   auto const delta_t{sf::milliseconds(1)};
   int const fps = 200;
-  int const steps_per_evolution{1000 / fps};
+  int const steps_per_evolution{1000/fps};
   auto const display_width = sf::VideoMode::getDesktopMode().width;
   auto const display_height = sf::VideoMode::getDesktopMode().height;
 
@@ -37,16 +37,16 @@ int main() {
   std::default_random_engine gen{r()};
 
   for (unsigned int i = 0; i != uccelli.size(); ++i) {
-    // std::uniform_real_distribution<double> random_height(0.,
-    //                                                      display_height -
-    //                                                      200);
-    // std::uniform_real_distribution<double> random_width(0.,
-    //                                                     display_width - 200);
+    std::uniform_real_distribution<double> random_height(0.,
+                                                         display_height -
+                                                         200);
+    std::uniform_real_distribution<double> random_width(0.,
+                                                        display_width - 200);
 
     std::uniform_real_distribution<double> random_velocity(25., 50.);
 
-    uccelli[i].P.x = display_width / 2;
-    uccelli[i].P.y = display_height / 2;
+    uccelli[i].P.x = random_width(gen);
+    uccelli[i].P.y = random_height(gen);
     uccelli[i].V.vx = random_velocity(gen);
     uccelli[i].V.vy = random_velocity(gen);
 
@@ -102,7 +102,7 @@ int main() {
   sf::RenderWindow window(sf::VideoMode(display_width, display_height),
                           "SFML works!");
 
-  sf::RenderWindow window1(sf::VideoMode(700, 600), "Double window works!");
+  sf::RenderWindow window1(sf::VideoMode(300, 200), "Double window works!");
 
   sf::Vector2i v1(100, 200);
 
@@ -122,7 +122,7 @@ int main() {
   }
   sf::Sprite sprite1;
   sprite1.setTexture(texture1);
-  sprite1.setScale(1.f, 1.f);
+  sprite1.setScale(2.5f, 2.5f);
 
   sf::Font font;
   if (!font.loadFromFile("RachelBrown.ttf")) {
@@ -157,9 +157,13 @@ int main() {
     window.draw(sprite1);
 
     auto const state = evolve(boids, steps_per_evolution, delta_t);
-
+    
     for (auto& u : state) {
+    
+    auto arg = (180./3.1415926535) * std::atan(std::tan(u.V.vx/u.V.vy));  
+      
       sprite.setPosition(u.P.x, u.P.y);
+      sprite.setRotation(arg);
       window.draw(sprite);
       std::cout << u.P.x << "  " << u.P.y << std::endl;
     }
