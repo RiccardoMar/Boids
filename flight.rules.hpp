@@ -7,7 +7,7 @@
 // Separazione
 class Sep {
   double s_;
-  double ds_ = 25.;
+  double ds_ = 17.;
 
  public:
   Sep(double s)
