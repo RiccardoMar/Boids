@@ -16,7 +16,7 @@ auto evolve(Boids& boids, int steps_per_evolution, sf::Time delta_t) {
 // valori in input
 int main() {
   auto const delta_t{sf::milliseconds(1)};
-  int const fps = 200;
+  int const fps = 150;
   int const steps_per_evolution{1000/fps};
   auto const display_width = sf::VideoMode::getDesktopMode().width;
   auto const display_height = sf::VideoMode::getDesktopMode().height;
@@ -157,16 +157,37 @@ int main() {
     window.draw(sprite1);
 
     auto const state = evolve(boids, steps_per_evolution, delta_t);
-    
-    for (auto& u : state) {
-    
-    auto arg = (180./3.1415926535) * std::atan(std::tan(u.V.vx/u.V.vy));  
-      
-      sprite.setPosition(u.P.x, u.P.y);
-      sprite.setRotation(arg);
+    auto b = boids.state();
+    for (unsigned int i = 0; i != uccelli.size(); ++i) {
+      //auto arg = (180./3.1415926535) * std::atan(std::tan(b[i].V.vx/b[i].V.vy)); 
+      if(b[i].P.x > display_width -1000 || b[i].P.x < 0. ) {
+        b[i].V.vx =  b[i].V.vx -b[i].V.vx ; 
+        sprite.setPosition(b[i].P.x, b[i].P.y);
+        window.draw(sprite);
+      }
+      if(b[i].P.y > display_height -1000 || b[i].P.y < 0. ){
+        b[i].V.vy = b[i].V.vy - b[i].V.vy ;
+        
+        sprite.setPosition(b[i].P.x, b[i].P.y);
+        window.draw(sprite);
+      }
+      //sprite.setRotation(arg);
+      sprite.setPosition(b[i].P.x, b[i].P.y);
       window.draw(sprite);
-      std::cout << u.P.x << "  " << u.P.y << std::endl;
+      std::cout << b[i].P.x << "  " << b[i].P.y << b[i].UPN << std::endl;
     }
+    
+    
+    
+    // for (auto& u : state) {
+    
+    // auto arg = (180./3.1415926535) * std::atan(std::tan(u.V.vx/u.V.vy));  
+      
+    //   sprite.setPosition(u.P.x, u.P.y);
+    //   sprite.setRotation(arg);
+    //   window.draw(sprite);
+    //   std::cout << u.P.x << "  " << u.P.y << std::endl;
+    // }
 
     if (window1.isOpen() == false) {
       window.draw(text);
