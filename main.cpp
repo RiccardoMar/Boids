@@ -143,6 +143,8 @@ int main() {
   text.setFillColor(sf::Color::Black);
   text.setPosition(1000, 100);
 
+  bool wait = false;
+
   window.setFramerateLimit(fps);
   while (window.isOpen()) {
     sf::Event event;
@@ -155,15 +157,47 @@ int main() {
       if (event.type == sf::Event::Closed) window1.close();
     }
 
-    if (window1.isOpen() == false &&
+    if ((event.type == sf::Event::KeyPressed) || (event.key.code == sf::Keyboard::Enter)){
+        wait = true;}
+    
+    if((event.type == sf::Event::KeyPressed) || (event.key.code == sf::Keyboard::Escape)){
+            wait = false;
+        }
+        
+        if (window1.isOpen() == false &&
         sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
       window1.create(sf::VideoMode(700, 600), "Double window works!");
     }
 
+if(wait == true){ //codice quando il gioco è in pausa
+        window.clear();
+    window.draw(sprite1);
+    auto b = boids.state();
+
+      for (unsigned int i = 0; i != uccelli.size(); ++i) {
+    //  auto x_pos = sprite.getPosition().x;
+    //  auto y_pos = sprite.getPosition().y;
+     sprite.setPosition(b[i].P.x, b[i].P.y);
+     window.draw(sprite);
+    } 
+         
+         if (window1.isOpen() == false) {
+      window.draw(text);
+    }
+
+    window.display();
+
+    window1.clear(sf::Color::White);
+    window1.draw(sprite);
+    window1.display();
+        
+    }
+
+     if(wait == false) {
     window.clear();
     window.draw(sprite1);
 
-    auto const state = evolve(boids, 15, delta_t);
+    auto const state = evolve(boids, steps_per_evolution, delta_t);
     auto b = boids.state();
     std::cout << "////////////////////////////////////////////////////////////"
               << '\n';  
@@ -207,6 +241,7 @@ int main() {
     window1.clear(sf::Color::White);
     window1.draw(sprite);
     window1.display();
+     }
   }
 
   return 0;
