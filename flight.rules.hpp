@@ -7,13 +7,13 @@
 // Separazione
 class Sep {
   double s_;
-  double ds_ = 20.;
+  double ds_ = 100.;
 
  public:
   Sep(double s) : s_{s} {
-    if (s <= 0. || s > 1.) {
-      throw std::runtime_error{"Invalid separation parameter"};
-    }
+    // if (s <= 0. || s > 1.) {
+    //   throw std::runtime_error{"Invalid separation parameter"};
+    // }
   };
 
   std::vector<Velocity> operator()(std::vector<Coppia> const& Vicini,
