@@ -83,12 +83,22 @@ class All {
     std::cout << "velocities creato" << '\n';
 
     for (unsigned int i = 0; i != Vicini.size(); ++i) {
+      std::cout << "Velocità prima" << Velocities2[Vicini[i].u1.UPN].vx << " e "
+                << Velocities2[Vicini[i].u1.UPN].vy << std::endl;
+      std::cout << "Velocità uccelli" << uccelli[Vicini[i].u2.UPN].V.vx << " "
+                << uccelli[Vicini[i].u2.UPN].V.vy << " e "
+                << uccelli[Vicini[i].u1.UPN].V.vx << " "
+                << uccelli[Vicini[i].u1.UPN].V.vy << std::endl;
       Velocities2[Vicini[i].u1.UPN] +=
           uccelli[Vicini[i].u2.UPN].V - uccelli[Vicini[i].u1.UPN].V;
       Velocities2[Vicini[i].u2.UPN] +=
           uccelli[Vicini[i].u1.UPN].V - uccelli[Vicini[i].u2.UPN].V;
+      std::cout << "Velocità dopo" << Velocities2[Vicini[i].u1.UPN].vx << " e "
+                << Velocities2[Vicini[i].u1.UPN].vy << std::endl;
+      std::cout << "Counters prima" << Counters[Vicini[i].u1.UPN] << std::endl;
       Counters[Vicini[i].u1.UPN]++;
       Counters[Vicini[i].u2.UPN]++;
+      std::cout << "Counters dopo" << Counters[Vicini[i].u1.UPN] << std::endl;
     }
     for (unsigned int i = 0; i != Velocities2.size(); ++i) {
       if (Counters[i] != 0.) {
@@ -120,11 +130,13 @@ class Coe {
       Counters[Vicini[i].u2.UPN]++;
     }
     for (unsigned int i = 0; i != Velocities3.size(); ++i) {
-      Velocities3[i] =
-          Velocities3[i] / Counters[i];  // trasforma la sommatoria in media
-      Velocities3[i] = (Velocities3[i] - convertPtoV(uccelli[i].P)) / (1 / C);
-    }
-    return Velocities3;
+      if (Counters[i] != 0.) {
+        Velocities3[i] =
+            Velocities3[i] / Counters[i];  // trasforma la sommatoria in media
+        Velocities3[i] = (Velocities3[i] - convertPtoV(uccelli[i].P)) / (1 / C);
+      }
+      return Velocities3;
+    };
   };
 };
 
