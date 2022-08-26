@@ -24,9 +24,9 @@ class Sep {
     // std::cout << "Vicini size" << Vicini.size() << '\n';
     // std::cout << "velocities creato" << '\n';
 
-     /*std::cout << "Distanza fra dei vicini:" << dist(Vicini[1].u1,
-     Vicini[1].u2)
-    << '\n';*/
+    /*std::cout << "Distanza fra dei vicini:" << dist(Vicini[1].u1,
+    Vicini[1].u2)
+   << '\n';*/
 
     for (unsigned int i = 0; i != Vicini.size(); ++i) {
       // std::cout << "hey sto facendo il for" << '\n';
@@ -50,9 +50,9 @@ class Sep {
       }
     }  //-> così velocities è un vettore con le velocità v1, però che non sono
        // ancora state moltiplicate per il fattore s
-    for (auto const& i : Velocities1) {
+    /*for (auto const& i : Velocities1) {
       std::cout << "vx : " << i.vx << "vy : " << i.vy << '\n';
-    }
+    }*/
 
     /* std::cout << "ho fatto la sommatoria" << '\n';
      std::cout << "Velocities1 size : " << Velocities1.size() << '\n';*/
