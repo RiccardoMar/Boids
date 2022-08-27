@@ -27,7 +27,7 @@ int h;
     }
   }
 auto mean =  sum_distance / h;
-return (mean / uccelli.size());
+return (mean);
 }
 
 // valori in input
@@ -139,7 +139,7 @@ int main() {
   }
   sf::Sprite sprite;
   sprite.setTexture(texture);
-  sprite.setScale(0.08f, 0.08f);
+  sprite.setScale(0.05f, 0.05f);
 
   sf::Texture texture1;
   if (!texture1.loadFromFile("windowsxp.jpg")) {
