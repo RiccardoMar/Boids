@@ -3,11 +3,12 @@
 
 #include "boids.hpp"
 
-auto evolve(Boids& boids, int steps_per_evolution, sf::Time delta_t) {
+auto evolve(Boids& boids, int steps_per_evolution, sf::Time delta_t,
+            unsigned int display_width, unsigned int display_height) {
   double const dt{delta_t.asSeconds()};
-
   for (int i{0}; i != steps_per_evolution; ++i) {
-    boids.evolve(dt);
+    boids.evolve(dt, display_width, display_height);
+    // boids.bordi(boids, display_width, display_height);
   }
 
   return boids.state();
@@ -16,7 +17,7 @@ auto evolve(Boids& boids, int steps_per_evolution, sf::Time delta_t) {
 // valori in input
 int main() {
   auto const delta_t{sf::milliseconds(1)};
-  int const fps = 200;
+  int const fps = 30;
   int const steps_per_evolution{1000 / fps};
   auto const display_width = sf::VideoMode::getDesktopMode().width;
   auto const display_height = sf::VideoMode::getDesktopMode().height;
@@ -39,16 +40,15 @@ int main() {
   std::default_random_engine gen{r()};
 
   for (unsigned int i = 0; i != uccelli.size(); ++i) {
-    // std::uniform_real_distribution<double> random_height(0.,
-    //                                                      display_height -
-    //                                                      200);
-    // std::uniform_real_distribution<double> random_width(0.,
-    //                                                     display_width - 200);
+    std::uniform_real_distribution<double> random_height(0.,
+                                                         display_height - 200);
+    std::uniform_real_distribution<double> random_width(0.,
+                                                        display_width - 200);
 
-    std::uniform_real_distribution<double> random_velocity(25., 50.);
+    std::uniform_real_distribution<double> random_velocity(50., 150.);
 
-    uccelli[i].P.x = display_width / 2;
-    uccelli[i].P.y = display_height / 2;
+    uccelli[i].P.x = random_width(gen);
+    uccelli[i].P.y = random_height(gen);
     uccelli[i].V.vx = random_velocity(gen);
     uccelli[i].V.vy = random_velocity(gen);
 
@@ -60,18 +60,25 @@ int main() {
   double s;
   std::cout << "Inserire il parametro di separazione : ";
   std::cin >> s;
-
+  // if (s > 1 || s < 0) {
+  //   throw std::runtime_error{"Has to be between 0 and 1"};
+  // };
   Sep separazione{s};
 
   double a;
   std::cout << "Inserire il parametro di allineamento : ";
   std::cin >> a;
+  // if (a > 1 || a < 0) {
+  //   throw std::runtime_error{"Has to be between 0 and 1"};
+  // };
   All allineamento{a};
 
   double c;
   std::cout << "Inserire il parametro di coesione : ";
   std::cin >> c;
-
+  // if (c > 1 || c < 0) {
+  //   throw std::runtime_error{"Has to be between 0 and 1"};
+  // };
   Coe coesione{c};
 
   unsigned int distance;
@@ -96,13 +103,3 @@ int main() {
   for (auto const& u : boids.state()) {
     std::cout << u << '\n';
   }
-
-  std::cout << "/////////////////////////////////////////////////////////////"
-            << '\n';
-
-  auto vicini = Check(boids.state(), distance);
-  auto va = allineamento(vicini, boids.state());
-  for (auto& i : va) {
-    std::cout << i.vx << "  ;  " << i.vy << '\n';
-  }
-}
