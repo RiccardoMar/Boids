@@ -45,7 +45,7 @@ int main() {
     std::uniform_real_distribution<double> random_width(0.,
                                                         display_width - 200);
 
-    std::uniform_real_distribution<double> random_velocity(50., 150.);
+    std::uniform_real_distribution<double> random_velocity(-1500., 1500.);
 
     uccelli[i].P.x = random_width(gen);
     uccelli[i].P.y = random_height(gen);
@@ -121,7 +121,7 @@ int main() {
   }
   sf::Sprite sprite;
   sprite.setTexture(texture);
-  sprite.setScale(0.10f, 0.10f);
+  sprite.setScale(0.05f, 0.05f);
 
   sf::Texture texture1;
   if (!texture1.loadFromFile("windowsxp.jpg")) {
