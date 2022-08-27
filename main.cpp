@@ -16,8 +16,8 @@ auto evolve(Boids& boids, int steps_per_evolution, sf::Time delta_t,
 
 auto meandistance(Boids& boids){
   auto uccelli = boids.state();
-  double sum_distance;
-int h;
+  double sum_distance{0};
+int h{0};
   for (unsigned int i = 0; i != uccelli.size() - 1; ++i) {
     for (unsigned int j = i + 1; j != uccelli.size(); ++j) {
       auto dx = uccelli[i].P.x - uccelli[j].P.x;
@@ -28,6 +28,25 @@ int h;
   }
 auto mean =  sum_distance / h;
 return (mean);
+}
+
+auto STD(Boids& boids, double mean){
+  auto uccelli = boids.state();
+  double d{0.};
+int h{0};
+  for (unsigned int i = 0; i != uccelli.size() - 1; ++i) {
+    for (unsigned int j = i + 1; j != uccelli.size(); ++j) {
+      auto dx = uccelli[i].P.x - uccelli[j].P.x;
+      auto dy = uccelli[i].P.y - uccelli[j].P.y;
+      double xy = std::sqrt((dx*dx)+(dy*dy));
+      
+    d += std::pow((xy - mean), 2);
+    ++h;
+    }
+  }
+  
+auto STD = std::sqrt( d / (h));
+return (STD);
 }
 
 // valori in input
@@ -114,21 +133,14 @@ int main() {
               distance};  // bisogna fargli il costruttore
 
   // valori in output
-  std::cout
-      << "Distanza media tra i boids : ";  // inseriremo vettore di
-                                           // UStates con le nuove velocità
-
-  // for (auto const& u : boids.state()) {
-  //   std::cout << u << '\n';
-  // }
-
+      
   // std::cout << "/////////////////////////////////////////////////////////////"
   //           << '\n';
 
   sf::RenderWindow window(sf::VideoMode(display_width, display_height),
                           "SFML works!");
 
-  sf::RenderWindow window1(sf::VideoMode(300, 200), "Double window works!");
+  sf::RenderWindow window1(sf::VideoMode(600, 300), "Double window works!");
 
   sf::Vector2i v1(100, 200);
 
@@ -139,7 +151,7 @@ int main() {
   }
   sf::Sprite sprite;
   sprite.setTexture(texture);
-  sprite.setScale(0.05f, 0.05f);
+  sprite.setScale(0.08f, 0.08f);
 
   sf::Texture texture1;
   if (!texture1.loadFromFile("windowsxp.jpg")) {
@@ -150,6 +162,16 @@ int main() {
   sprite1.setTexture(texture1);
   sprite1.setScale(2.5, 2.5);
 
+sf::Texture texture2;
+if (!texture2.loadFromFile("pause.png")) {
+  std::cout << "Could not load texture" << std::endl;
+  return 0;
+}
+sf::Sprite sprite2;
+sprite2.setTexture(texture2);
+
+sprite2.setScale(4.091f, 5.33f);
+
   sf::Font font;
   if (!font.loadFromFile("RachelBrown.ttf")) {
     std::cout << "Could not load font" << std::endl;
@@ -157,12 +179,15 @@ int main() {
   }
   sf::Text text;
   text.setFont(font);
-  auto cacca = 1.1 - 0.1;
-  auto result = std::to_string(cacca);
-  text.setString(result);
-  text.setCharacterSize(50);
+  text.setCharacterSize(30);
   text.setFillColor(sf::Color::Black);
   text.setPosition(0, 0);
+
+  sf::Text text1;
+  text1.setFont(font);
+  text1.setCharacterSize(30);
+  text1.setFillColor(sf::Color::Black);
+  text1.setPosition(0, 100);
 
   bool wait = false;
 
@@ -195,17 +220,18 @@ int main() {
 
     if (wait == true) {  // codice quando il gioco è in pausa
       window.clear();
-      window.draw(sprite1);
-      auto b = boids.state();
+      window.draw(sprite2);
+      // window.draw(sprite1);
+    //   auto b = boids.state();
 
-      for (unsigned int i = 0; i != uccelli.size(); ++i) {
+    //   for (unsigned int i = 0; i != uccelli.size(); ++i) {
         
-        sprite.setPosition(b[i].P.x, b[i].P.y);
-        window.draw(sprite);
-    //      for (auto const& u : boids.state()) {
-    //  std::cout << u << '\n';
-    //}
-      }
+    //     sprite.setPosition(b[i].P.x, b[i].P.y);
+    //     window.draw(sprite);
+    // //      for (auto const& u : boids.state()) {
+    // //  std::cout << u << '\n';
+    // //}
+    //   }
       
 
       if (window1.isOpen() == false) {
@@ -216,6 +242,7 @@ int main() {
 
       window1.clear(sf::Color::White);
       window1.draw(text);
+      window1.draw(text1);
       window1.display();
     }
 
@@ -226,21 +253,25 @@ int main() {
       auto const state = evolve(boids, steps_per_evolution, delta_t,
                                 display_width , display_height );
       auto b = boids.state();
-      auto distanzam = meandistance(boids);
-      std::cout
-          << "////////////////////////////////////////////////////////////"
-          << '\n';
-      std::cout << distanzam << '\n';
+      auto mean = meandistance(boids);
+      auto distanza_m = std::to_string(mean);
+      auto s1 = "Distanza media : ";
+      auto m = s1+distanza_m;
+      auto SD = STD(boids, mean);
+      auto st_dev = std::to_string(SD);
+      auto s2 = "Deviazione standard : ";
+      auto sd = s2 + st_dev;
+      text1.setString(sd);
+      text.setString(m);
+      // std::cout
+      //     << "////////////////////////////////////////////////////////////"
+      //     << '\n';
       for (unsigned int i = 0; i != uccelli.size(); ++i) {
         // auto arg = (180. / 3.1415926535) * std::atan(b[i].V.vy / b[i].V.vx);
         // sprite.setRotation(arg);
-        // std::cout << b[i].V.vy << ", " << b[i].V.vx << '\n';
         sprite.setPosition(b[i].P.x, b[i].P.y);
         window.draw(sprite);
-
-        // ONLY for testing: std::cout << b[i].P.x << "  " << b[i].P.y <<
-        // b[i].UPN << std::endl;
-      }
+        }
 
       if (window1.isOpen() == false) {
         window.draw(text);
@@ -250,6 +281,7 @@ int main() {
 
       window1.clear(sf::Color::White);
       window1.draw(text);
+      window1.draw(text1);
       window1.display();
     }
   }
