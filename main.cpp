@@ -203,16 +203,17 @@ int main() {
       auto const state = evolve(boids, steps_per_evolution, delta_t,
                                 display_width, display_height);
       auto b = boids.state();
-      std::cout
+      /*std::cout
           << "////////////////////////////////////////////////////////////"
-          << '\n';
+          << '\n';*/
       for (unsigned int i = 0; i != uccelli.size(); ++i) {
-        // auto arg = (180./3.1415926535) *
-        // std::atan(std::tan(b[i].V.vx/b[i].V.vy)); sprite.setRotation(arg);
+        // auto arg = (180. / 3.1415926535) * std::atan(b[i].V.vy / b[i].V.vx);
+        // sprite.setRotation(arg);
         sprite.setPosition(b[i].P.x, b[i].P.y);
         window.draw(sprite);
 
-        //ONLY for testing: std::cout << b[i].P.x << "  " << b[i].P.y << b[i].UPN << std::endl;
+        // ONLY for testing: std::cout << b[i].P.x << "  " << b[i].P.y <<
+        // b[i].UPN << std::endl;
       }
 
       // for (auto& u : state) {
