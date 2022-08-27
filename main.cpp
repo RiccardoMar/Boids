@@ -177,8 +177,7 @@ if(wait == true){ //codice quando il gioco è in pausa
     auto b = boids.state();
 
       for (unsigned int i = 0; i != uccelli.size(); ++i) {
-    //  auto x_pos = sprite.getPosition().x;
-    //  auto y_pos = sprite.getPosition().y;
+   
      sprite.setPosition(b[i].P.x, b[i].P.y);
      window.draw(sprite);
     } 
