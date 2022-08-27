@@ -212,7 +212,7 @@ int main() {
         sprite.setPosition(b[i].P.x, b[i].P.y);
         window.draw(sprite);
 
-        std::cout << b[i].P.x << "  " << b[i].P.y << b[i].UPN << std::endl;
+        //ONLY for testing: std::cout << b[i].P.x << "  " << b[i].P.y << b[i].UPN << std::endl;
       }
 
       // for (auto& u : state) {
