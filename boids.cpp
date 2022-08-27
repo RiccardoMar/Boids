@@ -12,16 +12,16 @@ void Boids::evolve(double delta_t, unsigned int const display_width,
     UState_[i].V.vy += v_1[i].vy + v_2[i].vy + v_3[i].vy;
     UState_[i].P += convertVtoP(UState_[i].V) / (1.0 / delta_t);
     if (UState_[i].P.x < 0) {
-      UState_[i].V.vx = 2 * abs(UState_[i].V.vx);
+      UState_[i].V.vx = abs(UState_[i].V.vx);
     };
     if (UState_[i].P.x > display_width - 200) {
-      UState_[i].V.vx = (-2) * abs(UState_[i].V.vx);
+      UState_[i].V.vx = (-1) * abs(UState_[i].V.vx);
     };
     if (UState_[i].P.y < 0) {
-      UState_[i].V.vy = 2 * abs(UState_[i].V.vy);
+      UState_[i].V.vy = abs(UState_[i].V.vy);
     };
     if (UState_[i].P.y > display_height - 200) {
-      UState_[i].V.vy = (-2) * abs(UState_[i].V.vy);
+      UState_[i].V.vy = (-1) * abs(UState_[i].V.vy);
     };
   };
 
