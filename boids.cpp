@@ -56,13 +56,13 @@ void Boids::evolve(double delta_t, unsigned int const display_width,
     if (UState_[i].P.x < 0) {
       UState_[i].P.x = display_width;
     };
-    if (UState_[i].P.x > display_width - 200) {
+    if (UState_[i].P.x > display_width) {
       UState_[i].P.x = 0;
     };
     if (UState_[i].P.y < 0) {
       UState_[i].P.y = display_height;
     };
-    if (UState_[i].P.y > display_height - 200) {
+    if (UState_[i].P.y > display_height ) {
       UState_[i].P.y = 0;
     };
   };

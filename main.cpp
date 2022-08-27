@@ -14,13 +14,31 @@ auto evolve(Boids& boids, int steps_per_evolution, sf::Time delta_t,
   return boids.state();
 }
 
+auto meandistance(Boids& boids){
+  auto uccelli = boids.state();
+  double sum_distance;
+int h;
+  for (unsigned int i = 0; i != uccelli.size() - 1; ++i) {
+    for (unsigned int j = i + 1; j != uccelli.size(); ++j) {
+      auto dx = uccelli[i].P.x - uccelli[j].P.x;
+      auto dy = uccelli[i].P.y - uccelli[j].P.y;
+      sum_distance += std::sqrt((dx*dx)+(dy*dy));
+++h;
+    }
+  }
+auto mean =  sum_distance / h;
+return (mean / uccelli.size());
+}
+
 // valori in input
 int main() {
   auto const delta_t{sf::milliseconds(1)};
   int const fps = 30;
-  int const steps_per_evolution{1000 / fps};
-  auto const display_width = sf::VideoMode::getDesktopMode().width ;
-  auto const display_height = sf::VideoMode::getDesktopMode().height;
+  int const steps_per_evolution{1000/ fps};
+  // auto const display_width = sf::VideoMode::getDesktopMode().width ;
+  // auto const display_height = sf::VideoMode::getDesktopMode().height;
+  auto const display_width = 2700;
+  auto const display_height = 1700;
 
   std::cout << "Display width = " << display_width << " ; "
             << "Display height : " << display_height << '\n';
@@ -45,7 +63,7 @@ int main() {
     std::uniform_real_distribution<double> random_width(0.,
                                                         display_width - 200);
 
-    std::uniform_real_distribution<double> random_velocity(50., 150.);
+    std::uniform_real_distribution<double> random_velocity(-1500., 1500.);
 
     uccelli[i].P.x = random_width(gen);
     uccelli[i].P.y = random_height(gen);
@@ -121,7 +139,7 @@ int main() {
   }
   sf::Sprite sprite;
   sprite.setTexture(texture);
-  sprite.setScale(0.10f, 0.10f);
+  sprite.setScale(0.08f, 0.08f);
 
   sf::Texture texture1;
   if (!texture1.loadFromFile("windowsxp.jpg")) {
@@ -139,10 +157,12 @@ int main() {
   }
   sf::Text text;
   text.setFont(font);
-  text.setString("Click here to drop down menu");
+  auto cacca = 1.1 - 0.1;
+  auto result = std::to_string(cacca);
+  text.setString(result);
   text.setCharacterSize(50);
   text.setFillColor(sf::Color::Black);
-  text.setPosition(1000, 100);
+  text.setPosition(0, 0);
 
   bool wait = false;
 
@@ -179,8 +199,7 @@ int main() {
       auto b = boids.state();
 
       for (unsigned int i = 0; i != uccelli.size(); ++i) {
-        //  auto x_pos = sprite.getPosition().x;
-        //  auto y_pos = sprite.getPosition().y;
+        
         sprite.setPosition(b[i].P.x, b[i].P.y);
         window.draw(sprite);
     //      for (auto const& u : boids.state()) {
@@ -196,7 +215,7 @@ int main() {
       window.display();
 
       window1.clear(sf::Color::White);
-      window1.draw(sprite);
+      window1.draw(text);
       window1.display();
     }
 
@@ -205,30 +224,23 @@ int main() {
       window.draw(sprite1);
 
       auto const state = evolve(boids, steps_per_evolution, delta_t,
-                                display_width -50, display_height - 150);
+                                display_width , display_height );
       auto b = boids.state();
-      /*std::cout
+      auto distanzam = meandistance(boids);
+      std::cout
           << "////////////////////////////////////////////////////////////"
-          << '\n';*/
+          << '\n';
+      std::cout << distanzam << '\n';
       for (unsigned int i = 0; i != uccelli.size(); ++i) {
         // auto arg = (180. / 3.1415926535) * std::atan(b[i].V.vy / b[i].V.vx);
         // sprite.setRotation(arg);
+        // std::cout << b[i].V.vy << ", " << b[i].V.vx << '\n';
         sprite.setPosition(b[i].P.x, b[i].P.y);
         window.draw(sprite);
 
         // ONLY for testing: std::cout << b[i].P.x << "  " << b[i].P.y <<
         // b[i].UPN << std::endl;
       }
-
-      // for (auto& u : state) {
-
-      // auto arg = (180./3.1415926535) * std::atan(std::tan(u.V.vx/u.V.vy));
-
-      //   sprite.setPosition(u.P.x, u.P.y);
-      //   sprite.setRotation(arg);
-      //   window.draw(sprite);
-      //   std::cout << u.P.x << "  " << u.P.y << std::endl;
-      // }
 
       if (window1.isOpen() == false) {
         window.draw(text);
@@ -237,7 +249,7 @@ int main() {
       window.display();
 
       window1.clear(sf::Color::White);
-      window1.draw(sprite);
+      window1.draw(text);
       window1.display();
     }
   }
