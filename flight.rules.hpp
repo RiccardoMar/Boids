@@ -87,9 +87,9 @@ class Coe {
     std::vector<Velocity> Velocities3(uccelli.size());
     std::vector<short int> Counters(uccelli.size());
     for (unsigned int i = 0; i != Vicini.size(); ++i) {
-      Velocities3[Vicini[i].u1.UPN] += convertPtoV(uccelli[Vicini[i].u2.UPN].P);
-      Velocities3[Vicini[i].u2.UPN] += convertPtoV(uccelli[Vicini[i].u1.UPN].P);
-      Counters[Vicini[i].u1.UPN]++;
+      Velocities3[Vicini[i].u1.UPN] += convertPtoV(uccelli[Vicini[i].u2.UPN].P); //0 = 0 + 10
+      Velocities3[Vicini[i].u2.UPN] += convertPtoV(uccelli[Vicini[i].u1.UPN].P); //0 = 0 + 0
+      Counters[Vicini[i].u1.UPN]++; //
       Counters[Vicini[i].u2.UPN]++;
     }
     for (unsigned int i = 0; i != Velocities3.size(); ++i) {
