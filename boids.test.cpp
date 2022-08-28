@@ -8,32 +8,36 @@
 // però verrà testato in un altro file.
 
 TEST_CASE("Testing Sep") {
-  SUBCASE("Test S e ds") { CHECK_THROWS(Sep{-4, 3}); }
-  SUBCASE("Test") { CHECK_THROWS(Sep{3, -3}); }
-  SUBCASE("Test2") { CHECK_THROWS(Sep{-4, 0}); }
-  SUBCASE("Test3") { CHECK_THROWS(Sep{0, -3}); }
+  SUBCASE("Test S e ds") { CHECK_THROWS(Sep{-4}); }
+  SUBCASE("Test") { CHECK_THROWS(All{3}); }
+  SUBCASE("Test2") { CHECK_THROWS(Coe{-1}); }
+  //SUBCASE("Test3") { CHECK_THROWS( ); }
 }
 TEST_CASE("Testing ") {
   SUBCASE("Test funzionamento Sep") {
-    Sep const sep{1.0, 3.0};
+    unsigned int distanza = 50;
+    Sep sep{.5};
     UState u1;
-    u1.P.x = 5.;
-    u1.P.y = 5.;
-    u1.V.vx = 10.;
-    u1.V.vy = 10.;
-    u1.UPN = 1;
+    u1.P.x = 0.;
+    u1.P.y = 0.;
+    u1.V.vx = 0.;
+    u1.V.vy = 0.;
+    u1.UPN = 0;
     UState u2;
-    u2.P.x = 5.;
-    u2.P.y = 5.;
+    u2.P.x = 10.;
+    u2.P.y = 10.;
     u2.V.vx = 10.;
     u2.V.vy = 10.;
-    u2.UPN = 2;
-
+    u2.UPN = 1;
     std::vector<UState> uccelli{u1, u2};
-    std::cout << "Primo uccello:" << uccelli[0];
-    std::cout << "Secondo uccello:" << uccelli[1];
+    auto Vicini = Check(uccelli, distanza);
+    auto v_1 = sep(Vicini, uccelli);
 
-    // CHECK(sep(u1, u2) == doctest::Approx(8.485).epsilon(0.01));
+    CHECK(v_1[0].vx == doctest::Approx(-5.0));
+    CHECK(v_1[0].vy == doctest::Approx(-5.0));
+    CHECK(v_1[1].vx == doctest::Approx(5.0));
+    CHECK(v_1[1].vy == doctest::Approx(5.0));
+
   }
 }
 
@@ -63,7 +67,30 @@ TEST_CASE("Testing All") {
   }
 }
 
-// TEST_CASE("Testing Coe") {
+TEST_CASE("Testing Coe") {
+  unsigned int distanza = 50;
+    Coe c{.5};
+    UState u1;
+    u1.P.x = 0.;
+    u1.P.y = 0.;
+    u1.V.vx = 0.;
+    u1.V.vy = 0.;
+    u1.UPN = 0;
+    UState u2;
+    u2.P.x = 10.;
+    u2.P.y = 10.;
+    u2.V.vx = 10.;
+    u2.V.vy = 10.;
+    u2.UPN = 1;
+    std::vector<UState> uccelli{u1, u2};
+    auto Vicini = Check(uccelli, distanza);
+    auto v_3 = c(Vicini, uccelli);
+
+    CHECK(v_3[0].vx == doctest::Approx(5.0));
+    CHECK(v_3[0].vy == doctest::Approx(5.0));
+    CHECK(v_3[1].vx == doctest::Approx(-5.0));
+    CHECK(v_3[1].vy == doctest::Approx(-5.0));
+}
 //   SUBCASE("Testing ") {}
 // }
 // TEST_CASE("Testing Boids with 2 elements") {}
