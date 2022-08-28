@@ -41,7 +41,32 @@ TEST_CASE("Testing ") {
   }
 }
 
-// TEST_CASE("Testing All") {}
+TEST_CASE("Testing All") {
+  SUBCASE("Testing throws") { CHECK_THROWS(All{4.}); }
+  SUBCASE("Testing throws") { CHECK_THROWS(All{-1.}); }
+  SUBCASE("Testing funzionamento All") {
+    UState u1;
+    u1.P.x = 0.;
+    u1.P.y = 0.;
+    u1.V.vx = 0.;
+    u1.V.vy = 0.;
+    u1.UPN = 0;
+    UState u2;
+    u2.P.x = 10.;
+    u2.P.y = 10.;
+    u2.V.vx = 10.;
+    u2.V.vy = 10.;
+    u2.UPN = 1;
+    std::vector<UState> uccelli{u1, u2};
+    Coppia coppia{u1, u2};
+    std::vector<Coppia> vicini{coppia};
+    All allineamento{0.5};
+    auto velocities1 = allineamento(vicini, uccelli);
+    CHECK(velocities1[0].vx == doctest::Approx(+5.0));
+    CHECK(velocities1[1].vx == doctest::Approx(-5.0));
+  }
+}
+
 TEST_CASE("Testing Coe") {
   unsigned int distanza = 50;
     Coe c{.5};
@@ -63,8 +88,8 @@ TEST_CASE("Testing Coe") {
 
     CHECK(v_3[0].vx == doctest::Approx(5.0));
     CHECK(v_3[0].vy == doctest::Approx(5.0));
-    CHECK(v_3[1].vx == doctest::Approx(0.0));
-    CHECK(v_3[1].vy == doctest::Approx(0.0));
+    CHECK(v_3[1].vx == doctest::Approx(-5.0));
+    CHECK(v_3[1].vy == doctest::Approx(-5.0));
 }
 //   SUBCASE("Testing ") {}
 // }

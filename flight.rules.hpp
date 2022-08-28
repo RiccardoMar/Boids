@@ -87,16 +87,16 @@ class Coe {
     std::vector<Velocity> Velocities3(uccelli.size());
     std::vector<short int> Counters(uccelli.size());
     for (unsigned int i = 0; i != Vicini.size(); ++i) {
-      Velocities3[Vicini[i].u1.UPN] += convertPtoV(uccelli[Vicini[i].u2.UPN].P); //0 = 0 + 10
-      Velocities3[Vicini[i].u2.UPN] += convertPtoV(uccelli[Vicini[i].u1.UPN].P); //0 = 0 + 0
-      Counters[Vicini[i].u1.UPN]++; //1
-      Counters[Vicini[i].u2.UPN]++; //1
+      Velocities3[Vicini[i].u1.UPN] += convertPtoV(uccelli[Vicini[i].u2.UPN].P); 
+      Velocities3[Vicini[i].u2.UPN] += convertPtoV(uccelli[Vicini[i].u1.UPN].P); 
+      Counters[Vicini[i].u1.UPN]++; 
+      Counters[Vicini[i].u2.UPN]++; 
     }
     for (unsigned int i = 0; i != Velocities3.size(); ++i) {
       if (Counters[i] != 0.) {
-        Velocities3[i] = // = 10 / 
+        Velocities3[i] =
             Velocities3[i] / Counters[i];  // trasforma la sommatoria in media
-        Velocities3[i] = (Velocities3[i] - convertPtoV(uccelli[i].P)) / (1 / C); //
+        Velocities3[i] = (Velocities3[i] - convertPtoV(uccelli[i].P)) / (1 / C); 
       }
     }
     return Velocities3;
