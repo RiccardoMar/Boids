@@ -65,15 +65,15 @@ void Boids::evolve(double delta_t, unsigned int const display_width,
     UState_[i].V.vy += v_1[i].vy + v_2[i].vy + v_3[i].vy;
     UState_[i].P += convertVtoP(UState_[i].V) / (1.0 / delta_t);
     if (UState_[i].P.x < 0) {
-      UState_[i].P.x = display_width;
+      UState_[i].P.x = display_width -150;
     };
-    if (UState_[i].P.x > display_width) {
+    if (UState_[i].P.x > display_width -50) {
       UState_[i].P.x = 0;
     };
     if (UState_[i].P.y < 0) {
-      UState_[i].P.y = display_height;
+      UState_[i].P.y = display_height - 150;
     };
-    if (UState_[i].P.y > display_height ) {
+    if (UState_[i].P.y > display_height -150) {
       UState_[i].P.y = 0;
     };
     

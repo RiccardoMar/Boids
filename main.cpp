@@ -14,50 +14,50 @@ auto evolve(Boids& boids, int steps_per_evolution, sf::Time delta_t,
   return boids.state();
 }
 
-auto meandistance(Boids& boids){
+auto meandistance(Boids& boids) {
   auto uccelli = boids.state();
   double sum_distance{0};
-int h{0};
+  int h{0};
   for (unsigned int i = 0; i != uccelli.size() - 1; ++i) {
     for (unsigned int j = i + 1; j != uccelli.size(); ++j) {
       auto dx = uccelli[i].P.x - uccelli[j].P.x;
       auto dy = uccelli[i].P.y - uccelli[j].P.y;
-      sum_distance += std::sqrt((dx*dx)+(dy*dy));
-++h;
+      sum_distance += std::sqrt((dx * dx) + (dy * dy));
+      ++h;
     }
   }
-auto mean =  sum_distance / h;
-return (mean);
+  auto mean = sum_distance / h;
+  return (mean);
 }
 
-auto STD(Boids& boids, double mean){
+auto STD(Boids& boids, double mean) {
   auto uccelli = boids.state();
   double d{0.};
-int h{0};
+  int h{0};
   for (unsigned int i = 0; i != uccelli.size() - 1; ++i) {
     for (unsigned int j = i + 1; j != uccelli.size(); ++j) {
       auto dx = uccelli[i].P.x - uccelli[j].P.x;
       auto dy = uccelli[i].P.y - uccelli[j].P.y;
-      double xy = std::sqrt((dx*dx)+(dy*dy));
-      
-    d += std::pow((xy - mean), 2);
-    ++h;
+      double xy = std::sqrt((dx * dx) + (dy * dy));
+
+      d += std::pow((xy - mean), 2);
+      ++h;
     }
   }
-  
-auto STD = std::sqrt( d / (h));
-return (STD);
+
+  auto STD = std::sqrt(d / (h));
+  return (STD);
 }
 
 // valori in input
 int main() {
   auto const delta_t{sf::milliseconds(1)};
   int const fps = 60;
-  int const steps_per_evolution{1000/ fps};
-  // auto const display_width = sf::VideoMode::getDesktopMode().width ;
-  // auto const display_height = sf::VideoMode::getDesktopMode().height;
-  auto const display_width = 2700;
-  auto const display_height = 1700;
+  int const steps_per_evolution{1000 / fps};
+  auto const display_width = sf::VideoMode::getDesktopMode().width;
+  auto const display_height = sf::VideoMode::getDesktopMode().height;
+  // auto const display_width = 2700;
+  // auto const display_height = 1700;
 
   std::cout << "Display width = " << display_width << " ; "
             << "Display height : " << display_height << '\n';
@@ -82,7 +82,7 @@ int main() {
     std::uniform_real_distribution<double> random_width(0.,
                                                         display_width - 200);
 
-    std::uniform_real_distribution<double> random_velocity(-1500., 1500.);
+    std::uniform_real_distribution<double> random_velocity(-50., 50.);
 
     uccelli[i].P.x = random_width(gen);
     uccelli[i].P.y = random_height(gen);
@@ -121,7 +121,7 @@ int main() {
   unsigned int distance;
   std::cout
       << "Inserire la distanza di interazione fra boids (in pixel; ricordare "
-         "che il parametro distanza della separazione è 10 pixel) : ";
+         "che il parametro distanza della separazione è 30 pixel) : ";
   std::cin >> distance;
   if (distance > display_width) {
     throw std::runtime_error{"Has to be < width"};
@@ -133,8 +133,9 @@ int main() {
               distance};  // bisogna fargli il costruttore
 
   // valori in output
-      
-  // std::cout << "/////////////////////////////////////////////////////////////"
+
+  // std::cout <<
+  // "/////////////////////////////////////////////////////////////"
   //           << '\n';
 
   sf::RenderWindow window(sf::VideoMode(display_width, display_height),
@@ -162,15 +163,15 @@ int main() {
   // sprite1.setTexture(texture1);
   // sprite1.setScale(2.5, 2.5);
 
-sf::Texture texture2;
-if (!texture2.loadFromFile("pause.png")) {
-  std::cout << "Could not load texture" << std::endl;
-  return 0;
-}
-sf::Sprite sprite2;
-sprite2.setTexture(texture2);
+  sf::Texture texture2;
+  if (!texture2.loadFromFile("pause.png")) {
+    std::cout << "Could not load texture" << std::endl;
+    return 0;
+  }
+  sf::Sprite sprite2;
+  sprite2.setTexture(texture2);
 
-sprite2.setScale(4.091f, 5.33f);
+  sprite2.setScale(4.091f, 5.33f);
 
   sf::Font font;
   if (!font.loadFromFile("RachelBrown.ttf")) {
@@ -222,17 +223,16 @@ sprite2.setScale(4.091f, 5.33f);
       window.clear();
       window.draw(sprite2);
       // window.draw(sprite1);
-    //   auto b = boids.state();
+      //   auto b = boids.state();
 
-    //   for (unsigned int i = 0; i != uccelli.size(); ++i) {
-        
-    //     sprite.setPosition(b[i].P.x, b[i].P.y);
-    //     window.draw(sprite);
-    // //      for (auto const& u : boids.state()) {
-    // //  std::cout << u << '\n';
-    // //}
-    //   }
-      
+      //   for (unsigned int i = 0; i != uccelli.size(); ++i) {
+
+      //     sprite.setPosition(b[i].P.x, b[i].P.y);
+      //     window.draw(sprite);
+      // //      for (auto const& u : boids.state()) {
+      // //  std::cout << u << '\n';
+      // //}
+      //   }
 
       if (window1.isOpen() == false) {
         window.draw(text);
@@ -251,12 +251,12 @@ sprite2.setScale(4.091f, 5.33f);
       // window.draw(sprite1);
 
       auto const state = evolve(boids, steps_per_evolution, delta_t,
-                                display_width , display_height );
+                                display_width, display_height);
       auto b = boids.state();
       auto mean = meandistance(boids);
       auto distanza_m = std::to_string(mean);
       auto s1 = "Distanza media : ";
-      auto m = s1+distanza_m;
+      auto m = s1 + distanza_m;
       auto SD = STD(boids, mean);
       auto st_dev = std::to_string(SD);
       auto s2 = "Deviazione standard : ";
@@ -269,21 +269,9 @@ sprite2.setScale(4.091f, 5.33f);
       for (unsigned int i = 0; i != uccelli.size(); ++i) {
         // auto arg = (180. / 3.1415926535) * std::atan(b[i].V.vy / b[i].V.vx);
         // sprite.setRotation(arg);
-        // if(b[i].P.x < 100){
-        //    sprite.setPosition(b[i].P.x + display_width, b[i].P.y);
-        // }
-        // if(b[i].P.x > display_width - 100){
-        //    sprite.setPosition(b[i].P.x - display_width, b[i].P.y);
-        // }
-        // if(b[i].P.y < 100 ){
-        //    sprite.setPosition(b[i].P.x, b[i].P.y + display_height);
-        // }
-        // if(b[i].P.y > display_height - 100){
-        //    sprite.setPosition(b[i].P.x, b[i].P.y - display_height);
-        // }
         sprite.setPosition(b[i].P.x, b[i].P.y);
         window.draw(sprite);
-        }
+      }
 
       if (window1.isOpen() == false) {
         window.draw(text);
