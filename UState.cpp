@@ -29,6 +29,9 @@ Velocity Velocity::operator-(Velocity const& V2) {
   return Velocity{vx - V2.vx, vy - V2.vy};
 }
 Velocity Velocity::operator/(double const& den) {
+  if (den == 0.) {
+    throw std::runtime_error{"Denominator is zero: error"};
+  }
   return Velocity{vx / den, vy / den};
 }
 // Segue implementazione metodi UState

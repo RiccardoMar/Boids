@@ -13,6 +13,9 @@ struct Coppia {
 
 inline std::vector<Coppia> Check(std::vector<UState> const& uccelli,
                                  double const distanza) {
+  if (distanza < 0. || distanza > 30.) {
+    std::runtime_error{"Invalid distance; must be between 0. and 30."};
+  };
   std::vector<Coppia> Vicini;
   for (unsigned int i = 0; i != uccelli.size() - 1; ++i) {
     for (unsigned int j = i + 1; j != uccelli.size(); ++j) {
