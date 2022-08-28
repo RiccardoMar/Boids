@@ -269,18 +269,18 @@ sprite2.setScale(4.091f, 5.33f);
       for (unsigned int i = 0; i != uccelli.size(); ++i) {
         // auto arg = (180. / 3.1415926535) * std::atan(b[i].V.vy / b[i].V.vx);
         // sprite.setRotation(arg);
-        if(b[i].P.x < 100){
-           sprite.setPosition(b[i].P.x + display_width, b[i].P.y);
-        }
-        if(b[i].P.x > display_width - 100){
-           sprite.setPosition(b[i].P.x - display_width, b[i].P.y);
-        }
-        if(b[i].P.y < 100 ){
-           sprite.setPosition(b[i].P.x, b[i].P.y + display_height);
-        }
-        if(b[i].P.y > display_height - 100){
-           sprite.setPosition(b[i].P.x, b[i].P.y - display_height);
-        }
+        // if(b[i].P.x < 100){
+        //    sprite.setPosition(b[i].P.x + display_width, b[i].P.y);
+        // }
+        // if(b[i].P.x > display_width - 100){
+        //    sprite.setPosition(b[i].P.x - display_width, b[i].P.y);
+        // }
+        // if(b[i].P.y < 100 ){
+        //    sprite.setPosition(b[i].P.x, b[i].P.y + display_height);
+        // }
+        // if(b[i].P.y > display_height - 100){
+        //    sprite.setPosition(b[i].P.x, b[i].P.y - display_height);
+        // }
         sprite.setPosition(b[i].P.x, b[i].P.y);
         window.draw(sprite);
         }
