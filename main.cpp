@@ -8,7 +8,6 @@ auto evolve(Boids& boids, int steps_per_evolution, sf::Time delta_t,
   double const dt{delta_t.asSeconds()};
   for (int i{0}; i != steps_per_evolution; ++i) {
     boids.evolve(dt, display_width, display_height);
-    // boids.bordi(boids, display_width, display_height);
   }
 
   return boids.state();
@@ -56,8 +55,6 @@ int main() {
   int const steps_per_evolution{1000 / fps};
   auto const display_width = sf::VideoMode::getDesktopMode().width;
   auto const display_height = sf::VideoMode::getDesktopMode().height;
-  // auto const display_width = 2700;
-  // auto const display_height = 1700;
 
   std::cout << "Display width = " << display_width << " ; "
             << "Display height : " << display_height << '\n';
@@ -97,25 +94,16 @@ int main() {
   double s;
   std::cout << "Inserire il parametro di separazione : ";
   std::cin >> s;
-  // if (s > 1 || s < 0) {
-  //   throw std::runtime_error{"Has to be between 0 and 1"};
-  // };
   Sep separazione{s};
 
   double a;
   std::cout << "Inserire il parametro di allineamento : ";
   std::cin >> a;
-  // if (a > 1 || a < 0) {
-  //   throw std::runtime_error{"Has to be between 0 and 1"};
-  // };
   All allineamento{a};
 
   double c;
   std::cout << "Inserire il parametro di coesione : ";
   std::cin >> c;
-  // if (c > 1 || c < 0) {
-  //   throw std::runtime_error{"Has to be between 0 and 1"};
-  // };
   Coe coesione{c};
 
   unsigned int distance;
@@ -129,14 +117,10 @@ int main() {
 
   // Start interazione boids
 
-  Boids boids{uccelli, separazione, allineamento, coesione,
-              distance};  // bisogna fargli il costruttore
+  Boids boids{uccelli, separazione, allineamento, coesione, distance};
 
-  // valori in output
-
-  // std::cout <<
-  // "/////////////////////////////////////////////////////////////"
-  //           << '\n';
+  std::cout << "/////////////////////////////////////////////////////////////"
+            << '\n';
 
   sf::RenderWindow window(sf::VideoMode(display_width, display_height),
                           "SFML works!");
@@ -161,8 +145,8 @@ int main() {
   }
   sf::Sprite sprite1;
   sprite1.setTexture(texture1);
-  auto f1= (display_width)/728.;
-  auto f2 = (display_height - 150.)/410.;
+  auto f1 = (display_width) / 728.;
+  auto f2 = (display_height - 150.) / 410.;
   sprite1.setScale(f1, f2);
 
   sf::Texture texture2;
@@ -224,17 +208,6 @@ int main() {
     if (wait == true) {  // codice quando il gioco è in pausa
       window.clear();
       window.draw(sprite2);
-      // window.draw(sprite1);
-      //   auto b = boids.state();
-
-      //   for (unsigned int i = 0; i != uccelli.size(); ++i) {
-
-      //     sprite.setPosition(b[i].P.x, b[i].P.y);
-      //     window.draw(sprite);
-      // //      for (auto const& u : boids.state()) {
-      // //  std::cout << u << '\n';
-      // //}
-      //   }
 
       if (window1.isOpen() == false) {
         window.draw(text);
