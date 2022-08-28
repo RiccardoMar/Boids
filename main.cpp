@@ -154,14 +154,16 @@ int main() {
   sprite.setTexture(texture);
   sprite.setScale(0.1f, 0.1f);
 
-  // sf::Texture texture1;
-  // if (!texture1.loadFromFile("windowsxp.jpg")) {
-  //   std::cout << "Could not load texture" << std::endl;
-  //   return 0;
-  // }
-  // sf::Sprite sprite1;
-  // sprite1.setTexture(texture1);
-  // sprite1.setScale(2.5, 2.5);
+  sf::Texture texture1;
+  if (!texture1.loadFromFile("sky.jpg")) {
+    std::cout << "Could not load texture" << std::endl;
+    return 0;
+  }
+  sf::Sprite sprite1;
+  sprite1.setTexture(texture1);
+  auto f1= (display_width)/728.;
+  auto f2 = (display_height - 150.)/410.;
+  sprite1.setScale(f1, f2);
 
   sf::Texture texture2;
   if (!texture2.loadFromFile("pause.png")) {
@@ -248,7 +250,7 @@ int main() {
 
     if (wait == false) {
       window.clear(sf::Color::Black);
-      // window.draw(sprite1);
+      window.draw(sprite1);
 
       auto const state = evolve(boids, steps_per_evolution, delta_t,
                                 display_width, display_height);
