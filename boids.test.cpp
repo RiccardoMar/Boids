@@ -61,10 +61,10 @@ TEST_CASE("Testing Coe") {
     auto Vicini = Check(uccelli, distanza);
     auto v_3 = c(Vicini, uccelli);
 
-    CHECK(v_3[0].vx == doctest::Approx(-5.0));
-    CHECK(v_3[0].vy == doctest::Approx(-5.0));
-    CHECK(v_3[1].vx == doctest::Approx(5.0));
-    CHECK(v_3[1].vy == doctest::Approx(5.0));
+    CHECK(v_3[0].vx == doctest::Approx(5.0));
+    CHECK(v_3[0].vy == doctest::Approx(5.0));
+    CHECK(v_3[1].vx == doctest::Approx(0.0));
+    CHECK(v_3[1].vy == doctest::Approx(0.0));
 }
 //   SUBCASE("Testing ") {}
 // }
