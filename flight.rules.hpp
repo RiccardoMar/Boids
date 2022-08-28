@@ -42,7 +42,7 @@ class All {
 
  public:
   All(double a) : A{a} {
-    if (a > 1 || a < 0) {
+    if (a >= 1 || a < 0) {
       throw std::runtime_error{"Has to be between 0 and 1"};
     };
   };
