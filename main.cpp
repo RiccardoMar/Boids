@@ -62,7 +62,7 @@ int main() {
   int n;
   std::cout << "Inserire il numero desiderato di boids : ";
   std::cin >> n;
-  if (n <= 2) {
+  if (n < 2) {
     throw std::runtime_error{"Has to be a positive integer > 2"};
   };
 
