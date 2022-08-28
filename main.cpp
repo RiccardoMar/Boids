@@ -52,7 +52,7 @@ return (STD);
 // valori in input
 int main() {
   auto const delta_t{sf::milliseconds(1)};
-  int const fps = 30;
+  int const fps = 60;
   int const steps_per_evolution{1000/ fps};
   // auto const display_width = sf::VideoMode::getDesktopMode().width ;
   // auto const display_height = sf::VideoMode::getDesktopMode().height;
@@ -151,16 +151,16 @@ int main() {
   }
   sf::Sprite sprite;
   sprite.setTexture(texture);
-  sprite.setScale(0.08f, 0.08f);
+  sprite.setScale(0.1f, 0.1f);
 
-  sf::Texture texture1;
-  if (!texture1.loadFromFile("windowsxp.jpg")) {
-    std::cout << "Could not load texture" << std::endl;
-    return 0;
-  }
-  sf::Sprite sprite1;
-  sprite1.setTexture(texture1);
-  sprite1.setScale(2.5, 2.5);
+  // sf::Texture texture1;
+  // if (!texture1.loadFromFile("windowsxp.jpg")) {
+  //   std::cout << "Could not load texture" << std::endl;
+  //   return 0;
+  // }
+  // sf::Sprite sprite1;
+  // sprite1.setTexture(texture1);
+  // sprite1.setScale(2.5, 2.5);
 
 sf::Texture texture2;
 if (!texture2.loadFromFile("pause.png")) {
@@ -247,8 +247,8 @@ sprite2.setScale(4.091f, 5.33f);
     }
 
     if (wait == false) {
-      window.clear();
-      window.draw(sprite1);
+      window.clear(sf::Color::Black);
+      // window.draw(sprite1);
 
       auto const state = evolve(boids, steps_per_evolution, delta_t,
                                 display_width , display_height );
@@ -269,6 +269,18 @@ sprite2.setScale(4.091f, 5.33f);
       for (unsigned int i = 0; i != uccelli.size(); ++i) {
         // auto arg = (180. / 3.1415926535) * std::atan(b[i].V.vy / b[i].V.vx);
         // sprite.setRotation(arg);
+        if(b[i].P.x < 100){
+           sprite.setPosition(b[i].P.x + display_width, b[i].P.y);
+        }
+        if(b[i].P.x > display_width - 100){
+           sprite.setPosition(b[i].P.x - display_width, b[i].P.y);
+        }
+        if(b[i].P.y < 100 ){
+           sprite.setPosition(b[i].P.x, b[i].P.y + display_height);
+        }
+        if(b[i].P.y > display_height - 100){
+           sprite.setPosition(b[i].P.x, b[i].P.y - display_height);
+        }
         sprite.setPosition(b[i].P.x, b[i].P.y);
         window.draw(sprite);
         }

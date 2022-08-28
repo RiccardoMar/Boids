@@ -19,12 +19,12 @@ string(APPEND CMAKE_EXE_LINKER_FLAGS_DEBUG " -fsanitize=address -fno-omit-frame-
 # richiedi il componente graphics della libreria SFML, versione 2.5
 #   le dipendenze vengono identificate automaticamente
 #find_package(SFML 2.5 COMPONENTS graphics REQUIRED)
-
+find_package(SFML 2.5.1 COMPONENTS graphics window system REQUIRED)
 # aggiungi l'eseguibile boids-sfml, da produrre a partire dai sorgenti indicati
 #   notare l'assenza degli header file, che pero' possono essere indicati
 add_executable( main.cpp boids.cpp UState.cpp)
 # l'eseguibile dipende dalla libreria sfml-graphics e sue dipendenze
-#target_link_libraries(boids-sfml PRIVATE sfml-graphics)
+target_link_libraries(boids-sfml PRIVATE sfml-graphics)
 
 # se il testing e' abilitato...
 #   per disabilitare il testing, passare -DBUILD_TESTING=OFF a cmake durante la fase di configurazione
