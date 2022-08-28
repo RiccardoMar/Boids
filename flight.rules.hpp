@@ -41,7 +41,11 @@ class All {
   double A;
 
  public:
-  All(double a) : A{a} {};
+  All(double a) : A{a} {
+    if (a > 1 || a < 0) {
+      throw std::runtime_error{"Has to be between 0 and 1"};
+    };
+  };
 
   std::vector<Velocity> operator()(std::vector<Coppia> const& Vicini,
                                    std::vector<UState> uccelli) {
@@ -72,7 +76,11 @@ class Coe {
   double C;
 
  public:
-  Coe(double c) : C{c} {};
+  Coe(double c) : C{c} {
+    if (c <= 0.) {
+      throw std::runtime_error{"Invalid separation parameter"};
+    }
+  };
 
   std::vector<Velocity> operator()(std::vector<Coppia> const& Vicini,
                                    std::vector<UState> uccelli) const {
