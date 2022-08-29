@@ -1,3 +1,5 @@
+#include <SFML/Graphics.hpp>
+#include <SFML/System/Time.hpp>
 #include "boids.hpp"
 
 auto evolve(Boids& boids, int steps_per_evolution, sf::Time delta_t,
@@ -106,13 +108,14 @@ int main() {
   std::cin >> c;
   Coe coesione{c};
 
-  int distanza;
+  int distanza = 0;
+
   std::cout
       << "Inserire la distanza di interazione fra boids (in pixel; ricordare "
          "che il parametro distanza della separazione è 30 pixel) : ";
   std::cin >> distanza;
   if (distanza < 0. || distanza < 30.) {
-    std::runtime_error{"Invalid distance; must be over 0. and 30."};
+    throw std::runtime_error{"Invalid distance; must be over 0. and 30."};
   };
   unsigned int distance = distanza;
   // Start interazione boids
@@ -125,9 +128,9 @@ int main() {
   // comparto grafico
 
   sf::RenderWindow window(sf::VideoMode(display_width, display_height),
-                          "SFML works!", sf::Style::Fullscreen);
+                          "Boids simulation");
 
-  sf::RenderWindow window1(sf::VideoMode(500, 300), "Double window works!");
+  sf::RenderWindow window1(sf::VideoMode(500, 300), "Output");
 
   sf::Vector2i v1(display_width - 500, display_height - 450);
   window1.setPosition(v1);
@@ -254,7 +257,7 @@ int main() {
 
     if (window1.isOpen() == false &&
         sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
-      window1.create(sf::VideoMode(500, 300), "Double window works!");
+      window1.create(sf::VideoMode(500, 300), "Output");
       window1.setPosition(v1);
     }
 
