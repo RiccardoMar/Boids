@@ -1,3 +1,34 @@
+# Installazione Cmake SFML
+```bash
+# Mac
+brew install cmake sfml
+
+# Ubuntu
+sudo apt install cmake libsfml-dev
+```
+
+# Configurazione
+```bash
+#Cambia directory di lavoro in Boids
+cd Boids
+#Crea directory di build
+mkdir build
+cd build
+#Comando di configurazione
+cmake -DCMAKE_BUILD_TYPE=Release ../
+```
+# Build e creazione dell'eseguibile
+```bash
+cmake --build . -j4 --target Boids
+#Testing
+cmake --build build --target boids.t
+```
+### 2. Esecuzione
+
+```bash
+./Boids
+```
+
 # Progetto Boids
 Questo si propone come progetto di programmazione della fisica.
 L'obbiettivo finale e principale è quello di realizzare tramite il linguaggio C++ la Simulazione di Stormi.
@@ -12,24 +43,3 @@ Allineamento: il boid tende ad allinearsi alle traiettorie dei boids vicini;
 Coesione: il boid tende a muoversi verso il baricentro dei boids vicini;
 Modelli più complessi introducono altre regole, per esempio per evitare gli ostacoli o per gestire stormi differenti.
 
-# Installazione Cmake SFML Mac
-```bash
-# Mac
-brew install cmake sfml
-
-# Ubuntu
-sudo apt install cmake libsfml-dev
-```
-
-# Configurazione
-```bash
-mkdir build
-cd build
-cmake -DCMAKE_BUILD_TYPE=Release ../
-```
-# Build e creazione dell'eseguibile
-```bash
-cmake --build . -j4 --target Boids
-#Testing
-cmake --build build --target boids.t
-```
