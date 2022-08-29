@@ -4,4 +4,4 @@ a.out
 # cmake build directories
 build*
 .clangformat
-.DS_Store
+echo .DS_Store >> .gitignore
