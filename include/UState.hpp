@@ -1,7 +1,7 @@
 #ifndef USTATE_HPP
 #define USTATE_HPP
 
-#include <iosfwd> //riguarda l'operatore << 
+#include <iosfwd>  //riguarda l'operatore <<
 
 struct Velocity {
   double vx{};
@@ -20,14 +20,16 @@ struct Position {
   Position move(Velocity const& V, double const& dt);
 };
 
-Velocity convertPtoV(Position P); //serve per alcuni passaggi algebrici nelle flight rules
+Velocity convertPtoV(
+    Position P);  // serve per alcuni passaggi algebrici nelle flight rules
 Position convertVtoP(Velocity V);
 
-struct UState { // stato dei singoli uccelli. Numero progressivo, posizione e velocità in x,y
+struct UState {  // stato dei singoli uccelli. Numero progressivo, posizione e
+                 // velocità in x,y
   int UPN{};
   Position P{};
   Velocity V{};
-  bool operator==(UState const& other) const; //per i test
+  bool operator==(UState const& other) const;  // per i test
   double dist(UState const& other) const;
 };
 

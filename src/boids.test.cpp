@@ -1,8 +1,7 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 
-#include "../include/boids.hpp"
-
 #include "../doctest.h"
+#include "../include/boids.hpp"
 
 // Quello che segue è il test per quanto riguarda la classe Boids, implementata
 // in boids.hpp; Essa include le tre regole Sep, All, Coe, e anche UState, che
@@ -24,8 +23,12 @@ TEST_CASE("Testing Sep") {
   u2.V.vx = 10.;
   u2.V.vy = 10.;
   u2.UPN = 1;
-  std::vector<UState> uccelli{u1, u2};
+  std::vector<UState> uccelli;
+  REQUIRE(uccelli.empty());
+  uccelli.push_back(u1);
+  uccelli.push_back(u2);
   auto Vicini = Check(uccelli, distanza);
+  REQUIRE(Vicini.empty() == false);
   auto v_1 = sep(Vicini, uccelli);
 
   CHECK(v_1[0].vx == doctest::Approx(-5.0));

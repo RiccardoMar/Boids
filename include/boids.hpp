@@ -1,6 +1,5 @@
 #ifndef BOIDS_HPP
 #define BOIDS_HPP
-//#include "UState.hpp" : forse si può togliere perché c'è in neighbours
 
 #include <cassert>
 #include <iostream>
@@ -28,12 +27,10 @@ class Boids {
 
   std::vector<UState> const& state() const { return UState_; }
 
-  void evolve(double delta_t, const unsigned int display_width,
-              const unsigned int display_height);
-
- /* void bordi(Boids& boids, const unsigned int display_width,
-             const unsigned int display_height);
-*/
-};  // classe per applicare le regole di interazione a tutto lo stormo
+  void evolve(
+      double delta_t, const unsigned int display_width,
+      const unsigned int display_height);  // classe per applicare le regole di
+                                           // interazione a tutto lo stormo
+};
 
 #endif
