@@ -35,8 +35,6 @@ Velocity Velocity::operator/(double const& den) {
   return Velocity{vx / den, vy / den};
 }
 // Segue implementazione metodi UState
-// bool UState::operator==(UState const& other) const {} ----- da implementare.
-// Implementare tolleranza per piccoli scarti.
 double UState::dist(UState const& other) const {
   double d = std::sqrt((P.x - other.P.x) * (P.x - other.P.x) +
                        (P.y - other.P.y) * (P.y - other.P.y));
@@ -50,10 +48,7 @@ std::ostream& operator<<(std::ostream& os, UState const& u) {
      << "Numero progressivo: " << u.UPN << '\n';
   return os;
 }
-Velocity convertPtoV(Position P) {
-  return Velocity{
-      P.x, P.y};  // serve per alcuni passaggi algebrici nelle flight rules
-}
+Velocity convertPtoV(Position P) { return Velocity{P.x, P.y}; }
 Position convertVtoP(Velocity V) { return Position{V.vx, V.vy}; }
 
 double dist(UState const& u1, UState const& u2) { return u1.dist(u2); }

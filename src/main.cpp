@@ -121,7 +121,6 @@ int main() {
     throw std::runtime_error{"Invalid distance; must be over 0. and 30."};
   };
   unsigned int distance = distanza;
-  // Start interazione boids
 
   Boids boids{uccelli, separazione, allineamento, coesione, distance};
 
@@ -155,8 +154,6 @@ int main() {
   sf::Sprite sprite1;
   sprite1.setTexture(texture1);
   sprite1.setScale(1.2f, 1.3f);
-  // sprite1.setPosition(1920 / 2 - display_width / 2,
-  //                     1080 / 2 - display_height / 2);
 
   sf::Texture texture2;
   if (!texture2.loadFromFile("../Images/pause.png")) {
@@ -214,7 +211,7 @@ int main() {
   sf::Text text3;
   text3.setFont(font);
   text3.setCharacterSize(30);
-  text3.setFillColor(sf::Color::Cyan);
+  text3.setFillColor(sf::Color::White);
   text3.setPosition(0, 100);
   text3.setString("Click here to reopen the small window");
 
@@ -359,9 +356,6 @@ int main() {
       auto sd = s2 + st_dev;
       text1.setString(sd);
       text.setString(m);
-      // std::cout
-      //     << "////////////////////////////////////////////////////////////"
-      //     << '\n';
 
       for (auto& u : state) {
         sprite.setPosition(u.P.x, u.P.y);
