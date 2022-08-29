@@ -1,7 +1,7 @@
 #ifndef USTATE_HPP
 #define USTATE_HPP
 
-#include <iosfwd>  //riguarda l'operatore <<
+#include <iosfwd>
 
 struct Velocity {
   double vx{};
