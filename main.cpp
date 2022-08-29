@@ -47,7 +47,9 @@ auto STD(Boids& boids, double mean) {
 
 // valori in input
 int main() {
-  std::cout << "///////////////////////////////////////////// Simulazione di Stormi ///////////////////////////////////////////" << '\n';
+  std::cout << "///////////////////////////////////////////// Simulazione di "
+               "Stormi ///////////////////////////////////////////"
+            << '\n';
   auto const delta_t{sf::milliseconds(1)};
   int const fps = 60;
   int const steps_per_evolution{1000 / fps};
@@ -104,15 +106,15 @@ int main() {
   std::cin >> c;
   Coe coesione{c};
 
-  unsigned int distance;
+  int distanza;
   std::cout
       << "Inserire la distanza di interazione fra boids (in pixel; ricordare "
          "che il parametro distanza della separazione è 30 pixel) : ";
-  std::cin >> distance;
-  if (distance > display_width) {
-    throw std::runtime_error{"Has to be < width"};
+  std::cin >> distanza;
+  if (distanza < 0. || distanza < 30.) {
+    std::runtime_error{"Invalid distance; must be over 0. and 30."};
   };
-
+  unsigned int distance = distanza;
   // Start interazione boids
 
   Boids boids{uccelli, separazione, allineamento, coesione, distance};
@@ -146,9 +148,8 @@ int main() {
   }
   sf::Sprite sprite1;
   sprite1.setTexture(texture1);
-  // auto f1 = (display_width) / 728.;
-  // auto f2 = (display_height - 150.) / 410.;
-  sprite1.setScale(1.3f, 1.5f);
+
+  // sprite1.setScale(1.3f, 1.5f);
 
   sf::Texture texture2;
   if (!texture2.loadFromFile("pause.png")) {
@@ -379,15 +380,12 @@ int main() {
       // std::cout
       //     << "////////////////////////////////////////////////////////////"
       //     << '\n';
-      
-      
+
       for (auto& u : state) {
-        
         sprite.setPosition(u.P.x, u.P.y);
         window.draw(sprite);
       }
-      
-      
+
       if (window1.isOpen() == false) {
         window.draw(text3);
       }
