@@ -125,7 +125,7 @@ int main() {
   // comparto grafico
 
   sf::RenderWindow window(sf::VideoMode(display_width, display_height),
-                          "SFML works!");
+                          "SFML works!", sf::Style::Fullscreen);
 
   sf::RenderWindow window1(sf::VideoMode(500, 300), "Double window works!");
 
@@ -148,8 +148,11 @@ int main() {
   }
   sf::Sprite sprite1;
   sprite1.setTexture(texture1);
-
-  // sprite1.setScale(1.3f, 1.5f);
+  // auto f1 = (display_width) / 728.;
+  // auto f2 = (display_height - 150.) / 410.;
+  // sprite1.setScale(1.f, 1.f);
+  sprite1.setPosition(1920 / 2 - display_width / 2,
+                      1080 / 2 - display_height / 2);
 
   sf::Texture texture2;
   if (!texture2.loadFromFile("pause.png")) {
