@@ -47,7 +47,9 @@ auto STD(Boids& boids, double mean) {
 
 // valori in input
 int main() {
-  std::cout << "///////////////////////////////////////////// Simulazione di Stormi ///////////////////////////////////////////" << '\n';
+  std::cout << "///////////////////////////////////////////// Simulazione di "
+               "Stormi ///////////////////////////////////////////"
+            << '\n';
   auto const delta_t{sf::milliseconds(1)};
   int const fps = 60;
   int const steps_per_evolution{1000 / fps};
@@ -123,7 +125,7 @@ int main() {
   // comparto grafico
 
   sf::RenderWindow window(sf::VideoMode(display_width, display_height),
-                          "SFML works!");
+                          "SFML works!", sf::Style::Fullscreen);
 
   sf::RenderWindow window1(sf::VideoMode(500, 300), "Double window works!");
 
@@ -148,7 +150,9 @@ int main() {
   sprite1.setTexture(texture1);
   // auto f1 = (display_width) / 728.;
   // auto f2 = (display_height - 150.) / 410.;
-  sprite1.setScale(1.3f, 1.5f);
+  // sprite1.setScale(1.f, 1.f);
+  sprite1.setPosition(1920 / 2 - display_width / 2,
+                      1080 / 2 - display_height / 2);
 
   sf::Texture texture2;
   if (!texture2.loadFromFile("pause.png")) {
@@ -379,15 +383,12 @@ int main() {
       // std::cout
       //     << "////////////////////////////////////////////////////////////"
       //     << '\n';
-      
-      
+
       for (auto& u : state) {
-        
         sprite.setPosition(u.P.x, u.P.y);
         window.draw(sprite);
       }
-      
-      
+
       if (window1.isOpen() == false) {
         window.draw(text3);
       }
