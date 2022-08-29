@@ -11,3 +11,12 @@ Separazione: il boid si allontana dai boids vicini;
 Allineamento: il boid tende ad allinearsi alle traiettorie dei boids vicini;
 Coesione: il boid tende a muoversi verso il baricentro dei boids vicini;
 Modelli più complessi introducono altre regole, per esempio per evitare gli ostacoli o per gestire stormi differenti.
+
+mkdir build
+cd build
+# Configurazione
+cmake -DCMAKE_BUILD_TYPE=Release ../
+# Build e creazione dell'eseguibile
+cmake --build . -j4 --target Boids
+#Testing
+cmake --build build --target boids.t
