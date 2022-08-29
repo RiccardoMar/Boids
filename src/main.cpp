@@ -154,7 +154,7 @@ int main() {
   }
   sf::Sprite sprite1;
   sprite1.setTexture(texture1);
-  sprite1.setScale(1.4f, 1.4f);
+  sprite1.setScale(1.2f, 1.3f);
   //sprite1.setPosition(1920 / 2 - display_width / 2,
   //                    1080 / 2 - display_height / 2);
 
@@ -330,11 +330,11 @@ int main() {
       sprite3.setPosition(x_pos, y_pos);
 
       if (p0 < p) {
-        sprite4.setPosition(p0, display_height - 500);
+        sprite4.setPosition(p0, display_height - 400);
         p0 += 6.f;
       }
       if (p0 > p) {
-        sprite4.setPosition(p, display_height - 500);
+        sprite4.setPosition(p, display_height - 400);
         p -= 6.f;
       }
       if (p < 0.f) {
