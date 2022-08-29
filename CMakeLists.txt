@@ -22,16 +22,18 @@ string(APPEND CMAKE_CXX_FLAGS " -Wall -Wextra")
 find_package(SFML 2.5.1 COMPONENTS graphics window system REQUIRED)
 # aggiungi l'eseguibile boids-sfml, da produrre a partire dai sorgenti indicati
 #   notare l'assenza degli header file, che pero' possono essere indicati
-add_executable( main.cpp boids.cpp UState.cpp)
+add_executable(Boids src/main.cpp src/boids.cpp src/UState.cpp)
+target_include_directories(Boids PUBLIC include)
+target_include_directories(Boids PRIVATE src)
 # l'eseguibile dipende dalla libreria sfml-graphics e sue dipendenze
-target_link_libraries(boids-sfml PRIVATE sfml-graphics)
+target_link_libraries(Boids sfml-graphics)
 
 # se il testing e' abilitato...
 #   per disabilitare il testing, passare -DBUILD_TESTING=OFF a cmake durante la fase di configurazione
 if (BUILD_TESTING)
 
   # aggiungi l'eseguibile boids.t, da produrre a partire dai sorgenti indicati
-  add_executable(boids.t boids.test.cpp boids.cpp UState.cpp)
+  add_executable(boids.t src/boids.test.cpp src/boids.cpp src/UState.cpp)
   target_link_libraries(boids.t ) #PRIVATE sfml-graphics
   # aggiungi l'eseguibile boids.t alla lista dei test, con nome boids.t
   add_test(NAME boids.t COMMAND boids.t)

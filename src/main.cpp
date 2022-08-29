@@ -155,7 +155,7 @@ int main() {
   sprite1.setTexture(texture1);
   // auto f1 = (display_width) / 728.;
   // auto f2 = (display_height - 150.) / 410.;
-  // sprite1.setScale(1.f, 1.f);
+  sprite1.setScale(1.f, 1.f);
   sprite1.setPosition(1920 / 2 - display_width / 2,
                       1080 / 2 - display_height / 2);
 
