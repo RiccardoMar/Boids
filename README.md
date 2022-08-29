@@ -13,15 +13,23 @@ Coesione: il boid tende a muoversi verso il baricentro dei boids vicini;
 Modelli più complessi introducono altre regole, per esempio per evitare gli ostacoli o per gestire stormi differenti.
 
 # Installazione Cmake SFML Mac
+```bash
+# Mac
 brew install cmake sfml
-# Installazione Cmake SFML Ubuntu
+
+# Ubuntu
 sudo apt install cmake libsfml-dev
+```
 
 # Configurazione
+```bash
 mkdir build
 cd build
 cmake -DCMAKE_BUILD_TYPE=Release ../
+```
 # Build e creazione dell'eseguibile
+```bash
 cmake --build . -j4 --target Boids
 #Testing
 cmake --build build --target boids.t
+```
