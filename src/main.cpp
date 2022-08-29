@@ -1,6 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System/Time.hpp>
-#include "boids.hpp"
+#include "../include/boids.hpp"
 
 auto evolve(Boids& boids, int steps_per_evolution, sf::Time delta_t,
             unsigned int display_width, unsigned int display_height) {
@@ -63,11 +63,13 @@ int main() {
 
   int n;
   std::cout << "Inserire il numero desiderato di boids : ";
-  std::cin >> n;
-  if (n < 2) {
-    throw std::runtime_error{"Has to be a positive integer > 2"};
+  while (!(std::cin >> n) || std::cin.get() != '\n') {
+    throw std::runtime_error{"Has to be an integer"};
+    std::cin.clear();
+  }
+  if (n < 2 || n > 1000) {
+    throw std::runtime_error{"Has to be a positive integer 2 < n < 1000"};
   };
-
   std::vector<UState> uccelli(n);
 
   // Creazione n uccelli a random e inserimento con for loop dentro std::vector
@@ -136,7 +138,7 @@ int main() {
   window1.setPosition(v1);
 
   sf::Texture texture;
-  if (!texture.loadFromFile("Alien.png")) {
+  if (!texture.loadFromFile("../Images/Alien.png")) {
     std::cout << "Could not load texture" << std::endl;
     return 0;
   }
@@ -145,7 +147,7 @@ int main() {
   sprite.setScale(0.07f, 0.07f);
 
   sf::Texture texture1;
-  if (!texture1.loadFromFile("space.jpg")) {
+  if (!texture1.loadFromFile("../Images/space.jpg")) {
     std::cout << "Could not load texture" << std::endl;
     return 0;
   }
@@ -158,7 +160,7 @@ int main() {
                       1080 / 2 - display_height / 2);
 
   sf::Texture texture2;
-  if (!texture2.loadFromFile("pause.png")) {
+  if (!texture2.loadFromFile("../Images/pause.png")) {
     std::cout << "Could not load texture" << std::endl;
     return 0;
   }
@@ -170,7 +172,7 @@ int main() {
   sprite2.setPosition(p1, p2);
 
   sf::Texture texture3;
-  if (!texture3.loadFromFile("unnamed.png")) {
+  if (!texture3.loadFromFile("../Images/unnamed.png")) {
     std::cout << "Could not load texture" << std::endl;
     return 0;
   }
@@ -178,7 +180,7 @@ int main() {
   sprite3.setTexture(texture3);
 
   sf::Texture texture4;
-  if (!texture4.loadFromFile("Nave.png")) {
+  if (!texture4.loadFromFile("../Images/Nave.png")) {
     std::cout << "Could not load texture" << std::endl;
     return 0;
   }
@@ -196,7 +198,7 @@ int main() {
   // sprite5.setScale(.7f, .7f);
 
   sf::Font font;
-  if (!font.loadFromFile("RachelBrown.ttf")) {
+  if (!font.loadFromFile("../Images/RachelBrown.ttf")) {
     std::cout << "Could not load font" << std::endl;
     return 0;
   }

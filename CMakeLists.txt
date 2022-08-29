@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(boids VERSION 0.1.0)
+project(Boids)
 
 # abilita il supporto per i test, tra cui l'opzione BUILD_TESTING usata sotto
 include(CTest)
@@ -13,8 +13,8 @@ set(CMAKE_CXX_EXTENSIONS ON)
 string(APPEND CMAKE_CXX_FLAGS " -Wall -Wextra")
 
 # abilita l'address sanitizer in debug mode
-string(APPEND CMAKE_CXX_FLAGS_DEBUG " -fsanitize=address -fno-omit-frame-pointer")
-string(APPEND CMAKE_EXE_LINKER_FLAGS_DEBUG " -fsanitize=address -fno-omit-frame-pointer")
+# string(APPEND CMAKE_CXX_FLAGS_DEBUG " -fsanitize=address -fno-omit-frame-pointer")
+# string(APPEND CMAKE_EXE_LINKER_FLAGS_DEBUG " -fsanitize=address -fno-omit-frame-pointer")
 
 # richiedi il componente graphics della libreria SFML, versione 2.5
 #   le dipendenze vengono identificate automaticamente

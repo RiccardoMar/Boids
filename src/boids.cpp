@@ -1,4 +1,4 @@
-#include "boids.hpp"
+#include "../include/boids.hpp"
 
 void Boids::evolve(double delta_t, unsigned int const display_width,
                    unsigned int const display_height) {

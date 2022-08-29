@@ -1,7 +1,7 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 
-#include "boids.hpp"
-#include "doctest.h"
+#include "../include/boids.hpp"
+#include "../doctest.h"
 
 // Quello che segue è il test per quanto riguarda la classe Boids, implementata
 // in boids.hpp; Essa include le tre regole Sep, All, Coe, e anche UState, che
