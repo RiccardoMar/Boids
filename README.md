@@ -24,7 +24,6 @@ cmake --build . -j4 --target Boids
 cmake --build build --target boids.t
 ```
 ### 2. Esecuzione
-
 ```bash
 ./Boids
 ```
