@@ -1,7 +1,7 @@
+echo .DS_Store >> .gitignore
 *.md
 a.out
 .vscode
 # cmake build directories
 build*
 .clangformat
-echo .DS_Store >> .gitignore
