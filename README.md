@@ -12,9 +12,14 @@ Allineamento: il boid tende ad allinearsi alle traiettorie dei boids vicini;
 Coesione: il boid tende a muoversi verso il baricentro dei boids vicini;
 Modelli più complessi introducono altre regole, per esempio per evitare gli ostacoli o per gestire stormi differenti.
 
+# Installazione Cmake SFML Mac
+brew install cmake sfml
+# Installazione Cmake SFML Ubuntu
+sudo apt install cmake libsfml-dev
+
+# Configurazione
 mkdir build
 cd build
-# Configurazione
 cmake -DCMAKE_BUILD_TYPE=Release ../
 # Build e creazione dell'eseguibile
 cmake --build . -j4 --target Boids
