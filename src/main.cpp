@@ -155,8 +155,8 @@ int main() {
   sf::Sprite sprite1;
   sprite1.setTexture(texture1);
   sprite1.setScale(1.2f, 1.3f);
-  //sprite1.setPosition(1920 / 2 - display_width / 2,
-  //                    1080 / 2 - display_height / 2);
+  // sprite1.setPosition(1920 / 2 - display_width / 2,
+  //                     1080 / 2 - display_height / 2);
 
   sf::Texture texture2;
   if (!texture2.loadFromFile("../Images/pause.png")) {
