@@ -1,7 +1,7 @@
-.DS_Store
 *.md
 a.out
 .vscode
 # cmake build directories
 build*
 .clangformat
+.DS_Store
