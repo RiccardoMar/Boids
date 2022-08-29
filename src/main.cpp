@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System/Time.hpp>
+
 #include "../include/boids.hpp"
 
 auto evolve(Boids& boids, int steps_per_evolution, sf::Time delta_t,
@@ -153,11 +154,9 @@ int main() {
   }
   sf::Sprite sprite1;
   sprite1.setTexture(texture1);
-  // auto f1 = (display_width) / 728.;
-  // auto f2 = (display_height - 150.) / 410.;
-  sprite1.setScale(1.f, 1.f);
-  sprite1.setPosition(1920 / 2 - display_width / 2,
-                      1080 / 2 - display_height / 2);
+  sprite1.setScale(1.4f, 1.4f);
+  //sprite1.setPosition(1920 / 2 - display_width / 2,
+  //                    1080 / 2 - display_height / 2);
 
   sf::Texture texture2;
   if (!texture2.loadFromFile("../Images/pause.png")) {
@@ -187,15 +186,6 @@ int main() {
   sf::Sprite sprite4;
   sprite4.setTexture(texture4);
   sprite4.setScale(.2f, .2f);
-
-  // sf::Texture texture5;
-  // if (!texture5.loadFromFile("exp.png")) {
-  //   std::cout << "Could not load texture" << std::endl;
-  //   return 0;
-  // }
-  // sf::Sprite sprite5;
-  // sprite5.setTexture(texture5);
-  // sprite5.setScale(.7f, .7f);
 
   sf::Font font;
   if (!font.loadFromFile("../Images/RachelBrown.ttf")) {
@@ -356,22 +346,6 @@ int main() {
 
       window.draw(sprite1);
       window.draw(sprite4);
-      // if (p0 > ((display_width -500)/2) && p0 < ((display_width +200)/2)) {
-      //   sprite5.setPosition((display_width/2), 500);
-      //   window.draw(sprite5);
-      // }
-      // if (p > ((display_width -200)/2) && p < ((display_width +100)/2)) {
-      //   sprite5.setPosition(1200 , 500);
-      //   window.draw(sprite5);
-      // }
-      // if (p > display_width - 300.f && p < display_width - 80.f) {
-      //   sprite5.setPosition(display_width - 250.f, 500);
-      //   window.draw(sprite5);
-      // }
-      // if (p > 0 && p < 300) {
-      //   sprite5.setPosition(200, 500);
-      //   window.draw(sprite5);
-      // }
       auto const state = evolve(boids, steps_per_evolution, delta_t,
                                 display_width, display_height);
       auto b = boids.state();
